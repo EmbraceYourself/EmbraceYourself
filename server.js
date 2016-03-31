@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var express = require('express');
 var bodyParser = require('body-parser')
 
@@ -20,3 +21,6 @@ app.get('/', function(req, res){
 app.listen(port, function() {
   console.log('App up and running on http://localhost: ', port);
 });
+=======
+var funk;
+>>>>>>> master

@@ -1,5 +1,8 @@
 ### node etc ###
 
+node_modules
+client/scripts
+
 # Logs
 logs
 *.log

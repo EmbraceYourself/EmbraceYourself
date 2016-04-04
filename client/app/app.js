@@ -36,12 +36,7 @@ angular.module('ridehook', [
 // .run(function ($rootScope, $location) {
 
 // })
-// .controller('main', function ($scope) {
-
-
-// });
-
-.controller('AppCtrl', function($scope, $mdDialog, ) {
+.controller('AppCtrl', function($scope, $mdDialog ) {
 
   $scope.showTabDialog = function(ev) {
     $mdDialog.show({
@@ -51,15 +46,10 @@ angular.module('ridehook', [
       targetEvent: ev,
       clickOutsideToClose:true
     })
-        .then(function(answer) {
-          // $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          // $scope.status = 'You cancelled the dialog.';
-        });
   };
 });
 
-function DialogController($scope, $mdDialog) {
+function DialogController($scope, $mdDialog, $http) {
   $scope.hide = function() {
     $mdDialog.hide();
   };
@@ -68,9 +58,26 @@ function DialogController($scope, $mdDialog) {
     $mdDialog.cancel();
   };
 
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
+  $scope.postUser = function(information) {
+    console.log(information);
+   // $http.post('/data', information, config).then(successCallback, errorCallback);
+    return $http({
+      method: 'POST',
+      url: '/data',
+      data: information
+    }).then(function (response){
+      console.log('success', response.data)
+          $mdDialog.hide(information);
+    })
+
   };
+
+   // $scope.getUser = function(information){
+   //  console.log(information);
+   //  return 
+
+   };
+
 }
 
 

@@ -28,12 +28,13 @@ app.get('/data', function (req, res) {
   console.log("Get Received!");
   var client = new pg.Client(connectionString);
   userController.getUsers(req, res, client);
-
 });
 
 app.post('/data', function (req, res) {
   console.log("Post received!");
+  console.log(req.body);
   if (req.body) {
+  	console.log(req.body);
     var client = new pg.Client(connectionString);
     userController.newUser(req.body.firstname, req.body.lastname, req, res, client);
   }

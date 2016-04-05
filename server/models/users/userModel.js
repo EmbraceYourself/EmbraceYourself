@@ -4,7 +4,7 @@
 
 var pg = require('pg');
 // var conString = "postgres://username:password@localhost/database";
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/Jenna';
 
 var userTableSure = function () {
 

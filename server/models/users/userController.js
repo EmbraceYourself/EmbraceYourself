@@ -51,7 +51,7 @@ function newUser (firstname, lastname, req, res, client) {
 
     query.on('end', function() {
       client.end();
-      return res.status(302);
+      return res.send("Success");
     });
 
   }); // end client.connect

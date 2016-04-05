@@ -2,52 +2,77 @@
 <html ng-app="ridehook">
   <head>
     <meta charset="utf-8" />
-    <title>Ridehook</title>
+    <title id="Ridehook">Ridehook</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" href="/scripts/angular-material/angular-material.css">
   </head>
+  
   <body >
-      <div id="signin/signup" ng-controller="AppCtrl" id="popupContainer" ng-cloak="" ng-app="MyApp">
-    
-    <div layout="row" layout-wrap="" layout-margin="" layout-align="end">
-      <md-button class="md-primary md-flat" ng-click="showTabDialog($event)">
-       Sign in | Sign Up
-      </md-button>
-    </div>
+    <div id="signup" ng-controller="AppCtrl" id="popupContainer" ng-cloak="" >
+      <div layout="row" layout-wrap="" layout-margin="" layout-align="end">
+       <md-button class="md-primary md-flat" ng-click="showSignUp($event)">Sign Up</md-button>
+         <md-button class="md-primary md-flat" ng-click="showSignIn($event)">Sign In</md-button>
+      </div>
 
-    <script type="text/ng-template" id="dialog1.tmpl.html"></script>
-      <script type="text/ng-template" id="tabDialog.tmpl.html">
+      <script type="text/ng-template" id="dialog1.tmpl.html"></script>
+        <script type="text/ng-template" id="tabDialog.tmpl.html">
         <md-dialog>
-      <form>
-          <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Sign Up">
-              <md-content class="md-padding">
-    <!-- text and box contents go here -->
-              </md-content>
-            </md-tab>
-            <md-tab label="Sign In">
-              <md-content class="md-padding">
-    <!-- text and box contents go here -->
-              </md-content>
-            </md-tab>
-          </md-tabs>
-        </md-dialog-content>
+          <form>
+            <md-tabs md-dynamic-height md-border-bottom>
+              <md-tab label="Sign Up">
+                <md-content class="md-padding">
+                  <input type="text" ng-model="firstname" >First Name</input>
+                  <input type="text" ng-model="lastname" >Last Name</input>
+                </md-content>
+              </md-tab>
+            </md-tabs>
+          <md-dialog-actions layout="row"> 
+            <md-button ng-click="hide()">Cancel</md-button>
+            <md-button ng-click="postUser({'firstname': firstname, 'lastname': lastname})" style="margin-right:20px;" >
+              Sign Up
+            </md-button>
+          </md-dialog-actions>
+          </form>
+        </md-dialog>
 
-        <md-dialog-actions layout="row"> 
-          <span flex></span>
-          <md-button ng-click="answer('not useful')" >
-            Cancel
-          </md-button>
-          <md-button ng-click="answer('useful')" style="margin-right:20px;" >
-            Sign In
-          </md-button>
-        </md-dialog-actions>
-      </form>
-    </md-dialog>
-    </script></div>
-    
+      </script>
+      
+    </div>
+     <div id="signin" ng-controller="AppCtrl" id="popupContainer" ng-cloak="" >
+      <div  layout-wrap="" layout-margin="" layout-align="end">
+      </div>
+      <script type="text/ng-template" id="dialog1.tmpl.html"></script>
+        <script type="text/ng-template" id="tabDialog1.tmpl.html">
+        <md-dialog>
+          <form>
+            <md-tabs md-dynamic-height md-border-bottom>
+              <md-tab label="Sign In">
+                <md-content class="md-padding">
+                  <input type="text" ng-model="firstname" >First Name</input>
+                  <input type="text" ng-model="lastname" >Last Name</input>
+                </md-content>
+              </md-tab>
+            </md-tabs>
+          <md-dialog-actions layout="row"> 
+            <md-button ng-click="hide()">Cancel</md-button>
+            <md-button ng-click="getUser({'firstname': firstname, 'lastname': lastname})" style="margin-right:20px;" >
+              Sign In
+            </md-button>
+          </md-dialog-actions>
+          </form>
+        </md-dialog>
+
+      </script>
+    </div>
     <div id="div-main" >
-      <h3>Ridehook: hook a ride!</h3>
+      <h3>Where do you want to go?</h3>
+      <div id="div-searchboxes">
+        <input type="text" value="Pickup Point"></input>
+        <input type="text" value="Dropoff Point"></input>
+        
+        <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+          </div>
+  
 
     </div>
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->

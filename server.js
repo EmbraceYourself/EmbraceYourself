@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 // database dependencies
 var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
@@ -19,12 +21,12 @@ var tripController = require('./server/models/trips/tripController.js');
 var app = express();
 var port = process.env.PORT || 8000;
 
+app.use('/data', expressJwt({secret: secret})); // to support tokens and protect every call to /data
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 app.use(express.static(__dirname + '/client'));
-//app.use('/scripts', express.static(__dirname + '/bower_components'));
 
 // app.get('/', function(req, res){
 //   res.send("Rideshare server up and running!");

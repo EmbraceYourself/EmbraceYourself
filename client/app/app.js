@@ -1,6 +1,6 @@
 // Sets up main angular module and dependency injections
 angular.module('ridehook', [
-  //'ridehook.trips',
+  'ridehook.trips',
   'ridehook.messages',
   //'ridehook.auth',
   'ngRoute', 
@@ -28,20 +28,15 @@ angular.module('ridehook', [
      controller: 'MessagesController',
      authenticate: true
     })
-    // .otherwise({
-    //  redirectTo: '/'
-    // });
+    .otherwise({
+     redirectTo: '/'
+    });
 
  })
 // .run(function ($rootScope, $location) {
 
 // })
-// .controller('main', function ($scope) {
-
-
-// });
-
-.controller('AppCtrl', function($scope, $mdDialog, ) {
+.controller('AppCtrl', function($scope, $mdDialog ) {
 
   $scope.showTabDialog = function(ev) {
     $mdDialog.show({
@@ -51,11 +46,6 @@ angular.module('ridehook', [
       targetEvent: ev,
       clickOutsideToClose:true
     })
-        .then(function(answer) {
-          // $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          // $scope.status = 'You cancelled the dialog.';
-        });
   };
 });
 
@@ -68,8 +58,8 @@ function DialogController($scope, $mdDialog) {
     $mdDialog.cancel();
   };
 
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
+  $scope.answer = function(information) {
+    $mdDialog.hide(information);
   };
 }
 

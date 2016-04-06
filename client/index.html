@@ -6,12 +6,8 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" href="/scripts/angular-material/angular-material.css">
   </head>
-  <body ng-controller="main">
-    <div id="div-main" >
-      <h3>Ridehook: hook a ride!</h3>
-
-    </div>
-      <div ng-controller="AppCtrl" id="popupContainer" ng-cloak="" ng-app="MyApp">
+  <body >
+      <div id="signin/signup" ng-controller="AppCtrl" id="popupContainer" ng-cloak="" ng-app="MyApp">
     
     <div layout="row" layout-wrap="" layout-margin="" layout-align="end">
       <md-button class="md-primary md-flat" ng-click="showTabDialog($event)">
@@ -50,17 +46,26 @@
     </md-dialog>
     </script></div>
     
+    <div id="div-main" >
+      <h3>Ridehook: hook a ride!</h3>
+
+    </div>
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ng-view></div>
-    <script src="/scripts/angular-aria/angular-aria.js"></script>
-    <script src="/scripts/angular-animate/angular-animate.js"></script>
-    <script src="/scripts/angular-material/angular-material.js"></script>    
+  
     <script src="/scripts/angular/angular.js"></script>
     <script src="/scripts/angular-route/angular-route.js"></script>
+<<<<<<< 46c05c263d6613694d9ed99ec45011e5f0cd421f
+    <script src="/scripts/angular-aria/angular-aria.js"></script>
+    <script src="/scripts/angular-animate/angular-animate.js"></script>
+    <script src="/scripts/angular-material/angular-material.js"></script>  
 
 
+=======
     <!--<script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>-->
+    <script src="app/trips/trips.js"></script>
+>>>>>>> Progress on the Trips view
     <script src="app/messages/messages.js"></script>
     <script src="app/app.js"></script>
 

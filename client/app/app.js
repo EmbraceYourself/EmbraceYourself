@@ -67,13 +67,27 @@ angular.module('ridehook', [
 // })
 
 .factory('searchResults', function(){
+ 
+//factory for search data to be saved from home and then accessed for search page
  var obj = {
   results: []
  }
  return obj;
 })
 
-.controller('AppCtrl', function ($scope, $mdDialog ) {
+//create factory that stores if user is logged in
+
+.factory('loggedIn', function(){
+
+
+   return loggedInBoolean = false;
+
+ 
+
+})
+
+.controller('AppCtrl', function ($scope, $mdDialog, loggedIn) {
+
 
   $scope.showSignUp = function(ev) {
     $mdDialog.show({
@@ -154,7 +168,10 @@ angular.module('ridehook', [
         if (response.status ===202){
           console.log("Username not valid.")
         } else{
-          console.log(response.data);
+          loggedIn.results = response;
+          console.log(loggedIn.results);
+          $scope.loggedInBoolean = true;
+          console.log($scope.loggedInBoolean);
           $mdDialog.hide(information);
           // console.log(response)
          }

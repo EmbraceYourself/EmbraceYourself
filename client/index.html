@@ -10,13 +10,15 @@
   <body >
     <div id="signup" ng-controller="AppCtrl" id="popupContainer" ng-cloak="" >
       <div layout="row" layout-wrap="" layout-margin="" layout-align="end">
-       <md-button class="md-primary md-flat" ng-click="showSignUp($event)">Sign Up</md-button>
-         <md-button class="md-primary md-flat" ng-click="showSignIn($event)">Sign In</md-button>
+       <md-button class=" md-flat" href="/#/trips" >Want to Drive?</md-button>
+       <md-button class="md-primary md-flat" ng-click="showSignUp($event)" >Sign Up</md-button>
+         <md-button class="md-primary md-flat" ng-click="showSignIn($event)" ng-hide='showSignInButton.loggedIn'>Sign In</md-button>
+
       </div>
 
       <script type="text/ng-template" id="dialog1.tmpl.html"></script>
         <script type="text/ng-template" id="tabDialog.tmpl.html">
-        <md-dialog flex="25"  >
+        <md-dialog flex="25">
           <form>
             <md-tabs md-border-bottom>
               <md-tab label="Sign Up">
@@ -54,7 +56,7 @@
       </div>
       <script type="text/ng-template" id="dialog1.tmpl.html"></script>
         <script type="text/ng-template" id="tabDialog1.tmpl.html">
-        <md-dialog>
+        <md-dialog >
           <form>
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Sign In">

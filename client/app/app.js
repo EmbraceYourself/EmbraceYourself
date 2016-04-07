@@ -67,13 +67,28 @@ angular.module('ridehook', [
 // })
 
 .factory('searchResults', function(){
+ 
+//factory for search data to be saved from home and then accessed for search page
  var obj = {
   results: []
  }
  return obj;
 })
 
-.controller('AppCtrl', function ($scope, $mdDialog ) {
+//create factory that stores if user is logged in
+
+.factory('loggedIn', function(){
+
+
+   loggedInBoolean = {valuep: false};
+   return loggedInBoolean;
+ 
+
+})
+
+.controller('AppCtrl', function ($scope, $mdDialog, loggedIn) {
+
+ 
 
   $scope.showSignUp = function(ev) {
     $mdDialog.show({
@@ -95,7 +110,11 @@ angular.module('ridehook', [
     })
   };
 
-  function DialogController($scope, $mdDialog, $http) {
+  function DialogController($scope, $mdDialog, $http, $location) {
+
+    $scope.redirectToPostTrip = function(){
+          $location.path('/search');
+    };
 
     $scope.hide = function() {
       $mdDialog.hide();
@@ -132,7 +151,17 @@ angular.module('ridehook', [
       });
     };
 
+    // $scope.hideUser = function(){
+    //   return $scope.showSignInButton = false;
+    // }
+    $scope.showSignInButton = {loggedIn: false};
+
+    $scope.setLoginStatus = function(button) {
+      $scope.showSignInButton = {loggedIn: !$scope.showSignInButton.loggedIn}
+    }
+
     $scope.loginUser = function(information){
+    
 
       information = {
         username: information.username,
@@ -154,7 +183,13 @@ angular.module('ridehook', [
         if (response.status ===202){
           console.log("Username not valid.")
         } else{
-          console.log(response.data);
+          loggedIn.results = response;
+          console.log(loggedIn.results);
+          $scope.setLoginStatus();
+          console.log($scope.showSignInButton);
+          // $scope.showSignInButton.loggedIn = true;
+          // $scope.hideUser();
+          // console.log($scope.hideUser())
           $mdDialog.hide(information);
           // console.log(response)
          }

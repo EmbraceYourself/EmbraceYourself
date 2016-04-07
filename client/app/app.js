@@ -42,6 +42,11 @@ angular.module('ridehook', [
       controller: 'ReviewController',
       authenticate: true
     })
+    .when('/search', {
+     templateUrl: 'app/search/search.html',
+     controller: 'TripsController',
+     authenticate: true
+    })
     .when('/messages', {
      templateUrl: 'app/messages/messages.html',
      controller: 'MessagesController',

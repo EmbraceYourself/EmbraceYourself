@@ -57,19 +57,19 @@ app.post('/authenticate', function (req, res) {
   }
 
   var profile = {
+    id: 123,
+    username: 'johndoe',
     first_name: 'John',
-    last_name: 'Doe',
-    email: 'john@doe.com',
-    id: 123
+    last_name: 'Doe'
   };
 
   // We are sending the profile inside the token
-  var token = jwt.sign(profile, 'secret', { expiresInMinutes: 60*5 });
+  var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
 
-  res.json({ token: token });
+  res.json({ token: token, user_id: profile.id });
 });
 
-app.post('/data/users/login', function (req, res) {
+app.post('/data/users/login/restricted', function (req, res) {
   console.log("Post received!");
   if (req.body) {
     var client = new pg.Client(connectionString);

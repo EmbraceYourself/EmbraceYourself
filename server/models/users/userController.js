@@ -81,7 +81,7 @@ function loginUser(data, req, res, client) {
         //   last_name: 'Doe'
         // };
         // client.end();
-        // var token = jwt.sign(profile, secret, { expiresInMinutes: 60 * 5 });
+        // var token = jwt.sign(profile, secret, { expiresIn: 18000 });
         // return res.status(201).send("Login worked!", { token: token });        
         client.end();
         return res.status(201).send("Login worked!");

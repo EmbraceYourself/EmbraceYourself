@@ -197,12 +197,27 @@ angular.module('ridehook', [
       //   console.log("error");
 
         $window.sessionStorage.token = response.data.token;
-        console.log('Success: ', response.data.token);
-        $mdDialog.hide(information);
+        $window.sessionStorage.user_id = response.data.user_id;
+        console.log('Success: ', response);
+
+        return $http({
+          method: 'POST',
+          url: '/data/users/login/restricted',
+          data: information
+        }).then(function (response){
+          console.log('Success: ', response);
+          $mdDialog.hide(information);
+        }, function (error) {
+          console.log('Error: ', error);
+        });
+
+        //$mdDialog.hide(information);
       }, function (error) {
         delete $window.sessionStorage.token;
+        delete $window.sessionStorage.user_id;
         console.log('Error: ', error);
       });
+
     };
   }
 

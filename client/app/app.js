@@ -181,7 +181,7 @@ angular.module('ridehook', [
 
       return $http({
         method: 'POST',
-        url: '/authenticate',
+        url: '/data/users/login',
         data: information
       }).then(function (response){
 
@@ -200,16 +200,16 @@ angular.module('ridehook', [
         $window.sessionStorage.user_id = response.data.user_id;
         console.log('Success: ', response);
 
-        return $http({
-          method: 'POST',
-          url: '/data/users/login',
-          data: information
-        }).then(function (response){
-          console.log('Success: ', response);
-          $mdDialog.hide(information);
-        }, function (error) {
-          console.log('Error: ', error);
-        });
+        // return $http({
+        //   method: 'POST',
+        //   url: '/data/users/login',
+        //   data: information
+        // }).then(function (response){
+        //   console.log('Success: ', response);
+        //   $mdDialog.hide(information);
+        // }, function (error) {
+        //   console.log('Error: ', error);
+        // });
 
         //$mdDialog.hide(information);
       }, function (error) {

@@ -74,15 +74,17 @@ function loginUser(data, req, res, client) {
         client.end();
         res.status(202).send("Incorrect username and/or password!");
       } else {
-        // var profile = {
-        //   id: 123,
-        //   username: 'johndoe',
-        //   first_name: 'John',
-        //   last_name: 'Doe'
-        // };
-        // client.end();
-        // var token = jwt.sign(profile, secret, { expiresIn: 18000 });
-        // return res.status(201).send("Login worked!", { token: token });        
+         var profile = {
+    id: 123,
+    username: 'johndoe',
+    first_name: 'John',
+    last_name: 'Doe'
+  };
+
+  // We are sending the profile inside the token
+  var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
+
+  res.json({ token: token, user_id: profile.id });       
         client.end();
         return res.status(201).send("Login worked!");
       }

@@ -49,9 +49,11 @@ app.post('/data/users/signup', function (req, res) {
 });
 
 app.post('/authenticate', function (req, res) {
-  //TODO validate req.body.username and req.body.password
+  // Need to validate req.body.username and req.body.password
   //if is invalid, return 401
-  // run db check on user 
+
+  // run db check on user ex:
+  
   // function loginUser(data, req, res, client) {
 
   //   client.connect(function(err) {
@@ -67,7 +69,7 @@ app.post('/authenticate', function (req, res) {
   //         res.status(202).send("Incorrect username and/or password!");
   //       } else {       
   //         client.end();
-  //         return res.status(201).send("Login worked!");
+  //         
   //       }
   //     });
 

@@ -21,12 +21,13 @@ var tripController = require('./server/models/trips/tripController.js');
 var app = express();
 var port = process.env.PORT || 8000;
 
-app.use('/data', expressJwt({secret: secret})); // to support tokens and protect every call to /data
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 app.use(express.static(__dirname + '/client'));
+
+app.use('/data', expressJwt({secret: 'secret'})); // to support tokens and protect every call to /data
 
 // app.get('/', function(req, res){
 //   res.send("Rideshare server up and running!");
@@ -45,6 +46,27 @@ app.post('/data/users/signup', function (req, res) {
     var client = new pg.Client(connectionString);
     userController.newUser(req.body, req, res, client);
   }
+});
+
+app.post('/authenticate', function (req, res) {
+  //TODO validate req.body.username and req.body.password
+  //if is invalid, return 401
+  if (!(req.body.username === 'john.doe' && req.body.password === 'foobar')) {
+    res.send(401, 'Wrong user or password');
+    return;
+  }
+
+  var profile = {
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'john@doe.com',
+    id: 123
+  };
+
+  // We are sending the profile inside the token
+  var token = jwt.sign(profile, 'secret', { expiresInMinutes: 60*5 });
+
+  res.json({ token: token });
 });
 
 app.post('/data/users/login', function (req, res) {

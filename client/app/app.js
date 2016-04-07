@@ -11,16 +11,35 @@ angular.module('ridehook', [
   'ngMaterial'
  ])
 // Angular's within-the-page routing system (uses 'angular-route')
+.factory('authInterceptor', function ($rootScope, $q, $window) {
+  return {
+    request: function (config) {
+      config.headers = config.headers || {};
+      if ($window.sessionStorage.token) {
+        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+      }
+      return config;
+    },
+    response: function (response) {
+      if (response.status === 401) {
+        // handle the case where the user is not authenticated
+      }
+      return response || $q.when(response);
+    }
+  };
+})
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
   //Each route binds a view (.html) and a controller to an endpoint (/signin)
     .when('/signin', {
      templateUrl: 'app/auth/signin.html',
-     controller: 'AuthController'
+     controller: 'AuthController',
+     authenticate: true
     })
     .when('/signup', {
      templateUrl: 'app/auth/signup.html',
-     controller: 'AuthController'
+     controller: 'AuthController',
+     authenticate: true
     })
     .when('/trips', {
      templateUrl: 'app/trips/trips.html',
@@ -55,7 +74,7 @@ angular.module('ridehook', [
     .when('/home', {
       templateUrl: 'app/home/home.html',
       controller: 'HomeController',
-      authenticate: false
+      authenticate: true
     })
     .when('/search', {
       templateUrl: 'app/search/search.html',
@@ -65,6 +84,8 @@ angular.module('ridehook', [
     .otherwise({
      redirectTo: '/'
     });
+
+  $httpProvider.interceptors.push('authInterceptor');
 
  })
 // .run(function ($rootScope, $location) {
@@ -107,7 +128,7 @@ angular.module('ridehook', [
     })
   };
 
-  function DialogController($scope, $mdDialog, $http) {
+  function DialogController($scope, $mdDialog, $http, $window) {
 
     $scope.hide = function() {
       $mdDialog.hide();
@@ -160,19 +181,27 @@ angular.module('ridehook', [
 
       return $http({
         method: 'POST',
-        url: '/data/users/login',
+        url: '/authenticate',
         data: information
       }).then(function (response){
-        if (response.status ===202){
-          console.log("Username not valid.")
-        } else{
-          console.log(response.data);
-          $mdDialog.hide(information);
-          // console.log(response)
-         }
-        // }
-      }, function(err){
-        console.log("error");
+
+      //   if (response.status ===202){
+      //     console.log("Username not valid.")
+      //   } else{
+      //     console.log(response.data);
+      //     $mdDialog.hide(information);
+      //     // console.log(response)
+      //    }
+      //   // }
+      // }, function(err){
+      //   console.log("error");
+
+        $window.sessionStorage.token = response.data.token;
+        console.log('Success: ', response.data.token);
+        $mdDialog.hide(information);
+      }, function (error) {
+        delete $window.sessionStorage.token;
+        console.log('Error: ', error);
       });
     };
   }

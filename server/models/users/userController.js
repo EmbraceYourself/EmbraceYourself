@@ -44,7 +44,7 @@ function newUser(data, req, res, client) {
 
     client.query("SELECT * FROM users WHERE username = $1", [data.username], function(err, result) {
       if(err) throw err;
-      if (result.rows.length > 0) {
+      if (result) {
         client.end();
         return res.status(202).send("User already exists!");
       } else {
@@ -70,10 +70,19 @@ function loginUser(data, req, res, client) {
 
     client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
       if(err) throw err;
-      if (result.rows.length === 0) {
+      if (!result) {
         client.end();
         res.status(202).send("Incorrect username and/or password!");
       } else {
+        // var profile = {
+        //   id: 123,
+        //   username: 'johndoe',
+        //   first_name: 'John',
+        //   last_name: 'Doe'
+        // };
+        // client.end();
+        // var token = jwt.sign(profile, secret, { expiresInMinutes: 60 * 5 });
+        // return res.status(201).send("Login worked!", { token: token });        
         client.end();
         return res.status(201).send("Login worked!");
       }

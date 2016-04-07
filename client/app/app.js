@@ -63,7 +63,7 @@ angular.module('ridehook', [
     })
     .when('/search', {
      templateUrl: 'app/search/search.html',
-     controller: 'TripsController',
+     controller: 'SearchController',
      authenticate: true
     })
     .when('/messages', {
@@ -202,7 +202,7 @@ angular.module('ridehook', [
 
         return $http({
           method: 'POST',
-          url: '/data/users/login/restricted',
+          url: '/data/users/login',
           data: information
         }).then(function (response){
           console.log('Success: ', response);

@@ -51,6 +51,29 @@ app.post('/data/users/signup', function (req, res) {
 app.post('/authenticate', function (req, res) {
   //TODO validate req.body.username and req.body.password
   //if is invalid, return 401
+  // run db check on user 
+  // function loginUser(data, req, res, client) {
+
+  //   client.connect(function(err) {
+  //     if(err) {
+  //       console.error('post failed!');
+  //       return res.status(500).json({ success: false, data: err});
+  //     }
+
+  //     client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
+  //       if(err) throw err;
+  //       if (!result) {
+  //         client.end();
+  //         res.status(202).send("Incorrect username and/or password!");
+  //       } else {       
+  //         client.end();
+  //         return res.status(201).send("Login worked!");
+  //       }
+  //     });
+
+  //   });
+  // }
+  
   if (!(req.body.username === 'john.doe' && req.body.password === 'foobar')) {
     res.send(401, 'Wrong user or password');
     return;
@@ -69,7 +92,7 @@ app.post('/authenticate', function (req, res) {
   res.json({ token: token, user_id: profile.id });
 });
 
-app.post('/data/users/login/restricted', function (req, res) {
+app.post('/data/users/login', function (req, res) {
   console.log("Post received!");
   if (req.body) {
     var client = new pg.Client(connectionString);

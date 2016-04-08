@@ -1,12 +1,9 @@
-// title
-// blurb
-// pickup point - city (contact driver for details)
-// date, time (calendar input widget?)
-// car seats available
 angular.module('ridehook.trips', [])
 
-.controller('TripsController', function ($scope, $http) {
+.controller('TripsController', function ($scope, $http, $window) {
 	$scope.trip = {};
+
+	console.log($window.sessionStorage);
 
 	$scope.createTrip = function () {
 

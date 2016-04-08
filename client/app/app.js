@@ -144,20 +144,39 @@ angular.module('ridehook', [
       information = {
         username: information.username,
         password: information.password,
-        first_name: 'Geralt',
-        last_name: 'Of Rivia',
-        email: 'geralt@grivia.com',
+        first_name: information.first_name,
+        last_name: information.last_name,
+        email: information.email,
         age: 27,
         profile_pic: null,
-        city: 'San Francisco',
-        state: 'California',
-        zip_code: 94103
+        city: information.city,
+        state: information.state,
+        zip_code: Number(information.zip)
       };
 
-      // id | username | password | first_name | last_name | email | age | profile_pic | city | state | zip_code 
+      /* Dummy data */
+      // information = {
+      //   username: information.username,
+      //   password: information.password,
+      //   first_name: 'Geralt',
+      //   last_name: 'Of Rivia',
+      //   email: 'geralt@grivia.com',
+      //   age: 27,
+      //   profile_pic: null,
+      //   city: 'San Francisco',
+      //   state: 'California',
+      //   zip_code: 94103
+      // };
+      
+     // $http.post('/data', information, config).then(successCallback, errorCallback);
+
+      if(!information.username || !information.password){
+        console.log('Error: a required field is empty.');
+        return;
+      }
 
       console.log('info obj to POST to server: ', information);
-     // $http.post('/data', information, config).then(successCallback, errorCallback);
+
       return $http({
         method: 'POST',
         url: '/data/users/signup',
@@ -195,7 +214,11 @@ angular.module('ridehook', [
       //   console.log("error");
 
         $window.sessionStorage.token = response.data.token;
-        $window.sessionStorage.user_id = response.data.user_id;
+        $window.sessionStorage.id = response.data.user_id;
+        $window.sessionStorage.un = response.data.username;
+        $window.sessionStorage.fn = response.data.first_name;
+        $window.sessionStorage.ln = response.data.last_name;
+
         console.log('Success: ', response);
 
         // return $http({
@@ -212,7 +235,10 @@ angular.module('ridehook', [
         //$mdDialog.hide(information);
       }, function (error) {
         delete $window.sessionStorage.token;
-        delete $window.sessionStorage.user_id;
+        delete $window.sessionStorage.id;
+        delete $window.sessionStorage.un;
+        delete $window.sessionStorage.fn;
+        delete $window.sessionStorage.ln;
         console.log('Error: ', error);
       });
 

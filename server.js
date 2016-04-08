@@ -48,7 +48,7 @@ app.post('/data/users/signup', function (req, res) {
   }
 });
 
-app.post('/authenticate', function (req, res) {
+app.post('/data/users/login', function (req, res) {
 
   console.log("Post received!");
   var profile = {};
@@ -82,7 +82,8 @@ app.post('/authenticate', function (req, res) {
               first_name: result.rows[0].first_name,
               last_name: result.rows[0].last_name
             };
-              
+            
+            // We are sending the profile inside the token
             var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
 
             res.json({ 
@@ -101,41 +102,16 @@ app.post('/authenticate', function (req, res) {
       });
     }
     loginUser(req.body, req, res, client);
-
-    
-  }
-  
-
-  // Need to validate req.body.username and req.body.password
-  //if is invalid, return 401
-
-  // run db check on user ex:
-  
-
-  
-  // if (!(req.body.username === 'john.doe' && req.body.password === 'foobar')) {
-  //   res.send(401, 'Wrong user or password');
-  //   return;
-  // }   
-
-  // var profile = {
-  //   id: 123,
-  //   username: 'johndoe',
-  //   first_name: 'John',
-  //   last_name: 'Doe'
-  // };
-
-  // We are sending the profile inside the token
-
-});
-
-app.post('/data/users/login', function (req, res) {
-  console.log("Post received!");
-  if (req.body) {
-    var client = new pg.Client(connectionString);
-    userController.loginUser(req.body, req, res, client);
   }
 });
+
+// app.post('/data/users/login', function (req, res) {
+//   console.log("Post received!");
+//   if (req.body) {
+//     var client = new pg.Client(connectionString);
+//     userController.loginUser(req.body, req, res, client);
+//   }
+// });
 
 app.post('/data/trips/newtrip', function (req, res) {
   console.log("Post received!");

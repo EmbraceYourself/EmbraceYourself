@@ -138,7 +138,6 @@ angular.module('ridehook', [
       $mdDialog.cancel();
     };
 
-
     $scope.newUser = function(information) {
 
       information = {
@@ -153,22 +152,6 @@ angular.module('ridehook', [
         state: information.state,
         zip_code: Number(information.zip)
       };
-
-      /* Dummy data */
-      // information = {
-      //   username: information.username,
-      //   password: information.password,
-      //   first_name: 'Geralt',
-      //   last_name: 'Of Rivia',
-      //   email: 'geralt@grivia.com',
-      //   age: 27,
-      //   profile_pic: null,
-      //   city: 'San Francisco',
-      //   state: 'California',
-      //   zip_code: 94103
-      // };
-      
-     // $http.post('/data', information, config).then(successCallback, errorCallback);
 
       if(!information.username || !information.password){
         console.log('Error: a required field is empty.');
@@ -198,20 +181,9 @@ angular.module('ridehook', [
 
       return $http({
         method: 'POST',
-        url: '/authenticate',
+        url: '/data/users/login',
         data: information
       }).then(function (response){
-
-      //   if (response.status ===202){
-      //     console.log("Username not valid.")
-      //   } else{
-      //     console.log(response.data);
-      //     $mdDialog.hide(information);
-      //     // console.log(response)
-      //    }
-      //   // }
-      // }, function(err){
-      //   console.log("error");
 
         $window.sessionStorage.token = response.data.token;
         $window.sessionStorage.id = response.data.user_id;
@@ -220,19 +192,8 @@ angular.module('ridehook', [
         $window.sessionStorage.ln = response.data.last_name;
 
         console.log('Success: ', response);
+        $mdDialog.hide(information);
 
-        // return $http({
-        //   method: 'POST',
-        //   url: '/data/users/login',
-        //   data: information
-        // }).then(function (response){
-        //   console.log('Success: ', response);
-        //   $mdDialog.hide(information);
-        // }, function (error) {
-        //   console.log('Error: ', error);
-        // });
-
-        //$mdDialog.hide(information);
       }, function (error) {
         delete $window.sessionStorage.token;
         delete $window.sessionStorage.id;

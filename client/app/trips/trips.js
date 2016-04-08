@@ -3,11 +3,9 @@ angular.module('ridehook.trips', [])
 .controller('TripsController', function ($scope, $http, $window) {
 	$scope.trip = {};
 
-	console.log($window.sessionStorage);
+	// console.log($window.sessionStorage);
 
 	$scope.createTrip = function () {
-
-		//$cookies.put('user_id', '1337');
 
 		var date = new Date($scope.trip.startDate);
         var day = date.getDate();
@@ -34,7 +32,7 @@ angular.module('ridehook.trips', [])
 			arrival_date: $scope.trip.endDate,//Date.parse($scope.trip.endDate),
 			arrival_time: $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod,
 			seats: Number($scope.trip.seats),
-			user_id: 1 // will reconfig this when we can get current user id from session
+			user_id: $window.sessionStorage.id // will reconfig this when we can get current user id from session
 		};
 
 		// new trip dummy data

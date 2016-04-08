@@ -69,11 +69,12 @@ function loginUser(data, req, res, client) {
     }
 
     client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
+      console.log('userController.loginUser query result: ', result.rows[0]);
       if(err) throw err;
-      if (result.rows.length === 0) {
+      if (!result) {
         client.end();
         res.status(202).send("Incorrect username and/or password!");
-      } else {
+      } else {    
         client.end();
         return res.status(201).send("Login worked!");
       }

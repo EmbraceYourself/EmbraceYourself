@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 // database dependencies
 var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
@@ -24,7 +26,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 app.use(express.static(__dirname + '/client'));
-//app.use('/scripts', express.static(__dirname + '/bower_components'));
+
+//app.use('/data', expressJwt({secret: 'secret'})); // to support tokens and protect every call to /data
 
 // app.get('/', function(req, res){
 //   res.send("Rideshare server up and running!");
@@ -46,12 +49,69 @@ app.post('/data/users/signup', function (req, res) {
 });
 
 app.post('/data/users/login', function (req, res) {
+
   console.log("Post received!");
+  var profile = {};
+
   if (req.body) {
     var client = new pg.Client(connectionString);
-    userController.loginUser(req.body, req, res, client);
+
+    function loginUser(data, req, res, client) {
+
+      client.connect(function(err) {
+        if(err) {
+          console.error('post failed!');
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
+          if(err) throw err;
+          if (!result) {
+            client.end();
+            res.status(202).send("Incorrect username and/or password!");
+          } else {
+
+            if (result.rows < 1) {
+              res.send(401, 'Wrong user or password');
+              return;
+            }
+
+            profile = {
+              user_id: result.rows[0].id,
+              username: result.rows[0].username,
+              first_name: result.rows[0].first_name,
+              last_name: result.rows[0].last_name
+            };
+            
+            // We are sending the profile inside the token
+            var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
+
+            res.json({ 
+              token: token, 
+              user_id: profile.user_id,
+              username: profile.username,
+              first_name: profile.first_name,
+              last_name: profile.last_name
+            });
+
+            client.end();
+            
+          }
+        });
+
+      });
+    }
+    loginUser(req.body, req, res, client);
   }
 });
+
+// app.post('/data/users/login', function (req, res) {
+//   console.log("Post received!");
+//   if (req.body) {
+//     var client = new pg.Client(connectionString);
+//     userController.loginUser(req.body, req, res, client);
+//   }
+// });
 
 app.post('/data/trips/newtrip', function (req, res) {
   console.log("Post received!");

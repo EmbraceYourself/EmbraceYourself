@@ -19,34 +19,40 @@
       <script type="text/ng-template" id="dialog1.tmpl.html"></script>
         <script type="text/ng-template" id="tabDialog.tmpl.html">
         <md-dialog flex="25" >
-          <form >
-            <md-tabs id="signupTab" md-border-bottom >
+          <form>
+            <md-tabs id="signupTab" md-border-bottom>
               <md-tab label="Sign Up">
                 <md-content height="auto" layout="column" class="md-padding">
-
-                  <input  type="text" placeholder="Username" ng-model="username" ></input>
-
-                  <input type="text" placeholder="Password" ng-model="password"></input>
-
-                  <input type="text" placeholder="First name" ng-model="first_name" ></input>
+                  <input  type="text" placeholder="Username" ng-model="username"></input>
+                  <input type="password" placeholder="Password" ng-model="password"></input>
+                  <input type="text" placeholder="First Name" ng-model="first_name"></input>
                   <input type="text" placeholder="Last Name" ng-model="last_name" ></input>
                   <input type="email" placeholder="Email" ng-model="email"></input>
-                   <input type="text" placeholder="City" ng-model="city" ></input>
-
-                   <input type="text" placeholder="State" ng-model="state" ></input>
-
+                  <input type="text" placeholder="Birth date" ng-model="birth_date"></input>
+                  <input type="text" placeholder="City" ng-model="city" ></input>
+                  <input type="text" placeholder="State" ng-model="state" ></input>
+                  <input type="text" placeholder="Zip Code" ng-model="zip" ></input>
                 </md-content>
               </md-tab>
             </md-tabs>
           <md-dialog-actions layout="row">
             <md-button ng-click="hide()">Cancel</md-button>
-            <md-button ng-click="newUser({'username': username, 'password': password})" style="margin-right:20px;" >
+            <md-button ng-click="newUser({
+                                'username': username, 
+                                'password': password,
+                                'first_name': first_name,
+                                'last_name': last_name,
+                                'email': email,
+                                'birth_date': birth_date,
+                                'city': city,
+                                'state': state,
+                                'zip': zip
+                              })" style="margin-right:20px;">
               Sign Up
             </md-button>
           </md-dialog-actions>
           </form>
         </md-dialog>
-
       </script>
 
     </div>
@@ -60,10 +66,9 @@
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Sign In">
                 <md-content layout="column" class="md-padding">
-
                   <input type="text" placeholder="Username" ng-model="username"></input>
 
-                  <input type="text" placeholder="Password" ng-model="password" ></input>
+                  <input type="password" placeholder="Password" ng-model="password" ></input>
                 </md-content>
               </md-tab>
             </md-tabs>
@@ -94,6 +99,7 @@
 
     <script src="app/search/search.js"></script>
     <script src="app/trips/trips.js"></script>
+    <script src="app/search/search.js"></script>
     <script src="app/messages/messages.js"></script>
     <script src="app/home/home.js"></script>
     <script src="app/reviews/reviews.js"></script>

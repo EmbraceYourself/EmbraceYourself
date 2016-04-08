@@ -18,23 +18,22 @@
 
       <script type="text/ng-template" id="dialog1.tmpl.html"></script>
         <script type="text/ng-template" id="tabDialog.tmpl.html">
-        <md-dialog flex="25">
-          <form>
-            <md-tabs md-border-bottom>
+        <md-dialog flex="25" >
+          <form >
+            <md-tabs id="signupTab" md-border-bottom >
               <md-tab label="Sign Up">
-                <md-content layout="column" class="md-padding">
-                  <p>Username</p>
-                  <input  type="text" placeholder="username" ng-model="username" ></input>
-                  <p>Password</p>
-                  <input type="text" placeholder="password" ng-model="password"></input>
-                  <p>First Name</p>
-                  <input type="text" placeholder="first_name" ng-model="first_name" ></input>
-                  <p>Last Name</p>
-                  <input type="text" placeholder="last_name" ng-model="last_name" ></input>
-                   <p>City</p>
-                   <input type="text" placeholder="city" ng-model="city" ></input>
-                   <p>State</p>
-                   <input type="text" placeholder="state" ng-model="state" ></input>
+                <md-content height="auto" layout="column" class="md-padding">
+             
+                  <input  type="text" placeholder="Username" ng-model="username" ></input>
+              
+                  <input type="text" placeholder="Password" ng-model="password"></input>
+                 
+                  <input type="text" placeholder="First name" ng-model="first_name" ></input>
+                  <input type="text" placeholder="Last Name" ng-model="last_name" ></input>
+                  
+                   <input type="text" placeholder="City" ng-model="city" ></input>
+                  
+                   <input type="text" placeholder="State" ng-model="state" ></input>
 
                 </md-content>
               </md-tab>
@@ -61,10 +60,10 @@
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Sign In">
                 <md-content layout="column" class="md-padding">
-                  <p>Username</p>
-                  <input type="text" placeholder="username" ng-model="username"></input>
-                  <p>Password</p>
-                  <input type="text" placeholder="password" ng-model="password" ></input>
+                
+                  <input type="text" placeholder="Username" ng-model="username"></input>
+                 
+                  <input type="text" placeholder="Password" ng-model="password" ></input>
                 </md-content>
               </md-tab>
             </md-tabs>

@@ -1,97 +1,91 @@
 // Sets up main angular module and dependency injections
 angular.module('ridehook', [
-        'ridehook.trips',
-        'ridehook.messages',
-        'ridehook.home',
-        'ridehook.reviews',
-        'ridehook.tripview',
-        //'ridehook.auth',
-        'ridehook.search',
-        'ngRoute',
-        'ngMaterial'
-    ])
-    // Angular's within-the-page routing system (uses 'angular-route')
-    .factory('authInterceptor', function($rootScope, $q, $window) {
-        return {
-            request: function(config) {
-                config.headers = config.headers || {};
-                if ($window.sessionStorage.token) {
-                    config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
-                }
-                return config;
-            },
-            response: function(response) {
-                if (response.status === 401) {
-                    // handle the case where the user is not authenticated
-                }
-                return response || $q.when(response);
-            }
-        };
-    })
-    .config(function($routeProvider, $httpProvider) {
-        $routeProvider
-        //Each route binds a view (.html) and a controller to an endpoint (/signin)
-            .when('/signin', {
-                templateUrl: 'app/auth/signin.html',
-                controller: 'AuthController',
-                authenticate: true
-            })
-            .when('/signup', {
-                templateUrl: 'app/auth/signup.html',
-                controller: 'AuthController',
-                authenticate: true
-            })
-            .when('/trips', {
-                templateUrl: 'app/trips/trips.html',
-                controller: 'TripsController',
-                authenticate: true
-            })
-            .when('/viewtrip', {
-                templateUrl: 'app/trips/viewtrip.html',
-                controller: 'ViewTripController',
-                authenticate: true
-            })
-            .when('/addreview', {
-                templateUrl: 'app/reviews/addreview.html',
-                controller: 'ReviewController',
-                authenticate: true
-            })
-            .when('/userreviews', {
-                templateUrl: 'app/reviews/userreviews.html',
-                controller: 'ReviewController',
-                authenticate: true
-            })
-            .when('/search', {
-                templateUrl: 'app/search/search.html',
-                controller: 'SearchController',
-                authenticate: true
-            })
-            .when('/messages', {
-                templateUrl: 'app/messages/messages.html',
-                controller: 'MessagesController',
-                authenticate: true
-            })
-            .when('/home', {
-                templateUrl: 'app/home/home.html',
-                controller: 'HomeController',
-                authenticate: true
-            })
-            .when('/search', {
-                templateUrl: 'app/search/search.html',
-                controller: 'SearchController',
-                authenticate: false
-            })
-            .otherwise({
-                redirectTo: '/home'
-            });
+  'ridehook.trips',
+  'ridehook.messages',
+  'ridehook.home',
+  'ridehook.reviews',
+  'ridehook.tripview',
+  //'ridehook.auth',
+  'ridehook.search',
+  'ngRoute',
+  'ngMaterial'
+ ])
+.factory('authInterceptor', function ($rootScope, $q, $window) {
+  return {
+    request: function (config) {
+      config.headers = config.headers || {};
+      if ($window.sessionStorage.token) {
+        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+      }
+      return config;
+    },
+    response: function (response) {
+      if (response.status === 401) {
+        // handle the case where the user is not authenticated
+      }
+      return response || $q.when(response);
+    }
+  };
+})
+// Angular's within-the-page routing system (uses 'angular-route')
+.config(function($routeProvider, $httpProvider) {
+    $routeProvider
+    //Each route binds a view (.html) and a controller to an endpoint (/signin)
+        .when('/signin', {
+            templateUrl: 'app/auth/signin.html',
+            controller: 'AuthController',
+            authenticate: true
+        })
+        .when('/signup', {
+            templateUrl: 'app/auth/signup.html',
+            controller: 'AuthController',
+            authenticate: true
+        })
+        .when('/trips', {
+            templateUrl: 'app/trips/trips.html',
+            controller: 'TripsController',
+            authenticate: true
+        })
+        .when('/viewtrip', {
+            templateUrl: 'app/trips/viewtrip.html',
+            controller: 'ViewTripController',
+            authenticate: true
+        })
+        .when('/addreview', {
+            templateUrl: 'app/reviews/addreview.html',
+            controller: 'ReviewController',
+            authenticate: true
+        })
+        .when('/userreviews', {
+            templateUrl: 'app/reviews/userreviews.html',
+            controller: 'ReviewController',
+            authenticate: true
+        })
+        .when('/search', {
+            templateUrl: 'app/search/search.html',
+            controller: 'SearchController',
+            authenticate: true
+        })
+        .when('/messages', {
+            templateUrl: 'app/messages/messages.html',
+            controller: 'MessagesController',
+            authenticate: true
+        })
+        .when('/home', {
+            templateUrl: 'app/home/home.html',
+            controller: 'HomeController',
+            authenticate: true
+        })
+        .otherwise({
+            redirectTo: '/home'
+        });
 
-        $httpProvider.interceptors.push('authInterceptor');
+    $httpProvider.interceptors.push('authInterceptor');
 
-    })
-    // .run(function ($rootScope, $location) {
+})
+// .run(function ($rootScope, $location) {
 
 // })
-
 .factory('searchResults', function() {
     var sObj = {
         results: []

@@ -1,7 +1,8 @@
 angular.module('ridehook.trips', [])
 
 .controller('TripsController', function ($scope, $http, $window, $location) {
-	$scope.trip = {};
+  
+  $scope.trip = {};
 
   // console.log($window.sessionStorage);
 

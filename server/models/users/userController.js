@@ -22,7 +22,7 @@ function getUsers(req, res, client) {
   }); // end client.connect
 }
 
-// signup CHANGE OBJECTKEYS
+// signup
 function newUser(data, req, res, client) {
 
   var dataInputs = [
@@ -111,11 +111,41 @@ function getUser(req, res) {
   }); // end client.connect
 }
 
+// make a profile
+function newBiography(data, req, res, client) {
+
+  client.connect(function(err) {
+    if(err) {
+      console.error('Post failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    client.query("SELECT * FROM users WHERE id = $1", [data.id], function(err, result) {
+      if(err) throw err;
+      if (result.rows.length > 0) {
+        client.end();
+        return res.status(202).send("User ID not present!");
+      } else {
+        var query = client.query("UPDATE users SET biography = $1 WHERE id = $2", [data.biography, data.id]);
+        // information.biography  $window.sessionStorage.id in app.js of client
+
+        query.on('end', function() {
+          client.end();
+          return res.status(201).send("Updated biography of user!");
+        });
+      }
+    });
+
+  }); // end client.connect
+}
+
+
 
 
 module.exports = {
   getUsers: getUsers,
   newUser: newUser,
   loginUser: loginUser,
+  newProfile: newProfile,
   getUser: getUser
 };

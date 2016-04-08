@@ -10,7 +10,7 @@ angular.module('ridehook.search', [])
   if ($scope.results.length > 0) {
     $scope.from = $scope.results[0].pickup_point;
     $scope.to = $scope.results[0].dropoff_point;
-    initMap($scope.from, $scope.to)
+    initMap($scope.from, $scope.to);
   }
 
   $scope.sendTrip = function(id) {

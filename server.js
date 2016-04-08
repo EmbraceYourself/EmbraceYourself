@@ -113,6 +113,14 @@ app.post('/data/users/login', function (req, res) {
 //   }
 // });
 
+app.post('/data/users/profile', function (req, res) {
+  console.log("Post received!");
+  if (req.body) {
+    var client = new pg.Client(connectionString);
+    userController.newBiography(req.body, req, res, client);
+  }
+});
+
 app.post('/data/trips/newtrip', function (req, res) {
   console.log("Post received!");
   if (req.body) {

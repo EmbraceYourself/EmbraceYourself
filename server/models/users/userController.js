@@ -1,68 +1,88 @@
-var User = require('./userModel.js'),
+// NOT needed, kept for testing purposes
+function getUsers(req, res, client) {
+  var results = [];
+  client.connect(function(err) {
+    if(err) {
+      console.error('Get failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
 
-/*exmaple of how to make table relatonsips:
-var User = sequelize.define('user', { name: Sequelize.STRING })
-  , Task = sequelize.define('task', { name: Sequelize.STRING })
-  , Tool = sequelize.define('tool', { name: Sequelize.STRING })
+    var query = client.query('SELECT * FROM users');
 
-Task.belongsTo(User)
-User.hasMany(Task)
-User.hasMany(Tool, { as: 'Instruments' })
+    query.on('row', function(row) {
+      results.push(row);
+    });
 
+    query.on('end', function() {
+      client.end();
+      return res.send(results);
+    });
+  }); // end client.connect
+}
 
-sequelize.sync().then(function() {
-  // this is where we continue ...
-})
-*/
+// signup CHANGE OBJECTKEYS
+function newUser(data, req, res, client) {
 
+  var dataInputs = [
+    data.username,
+    data.password,
+    data.first_name,
+    data.last_name,
+    data.age,
+    data.profile_pic,
+    data.city,
+    data.state,
+    data.zip_code
+  ];
+
+  client.connect(function(err) {
+    if(err) {
+      console.error('Post failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    client.query("SELECT * FROM users WHERE username = $1", [data.username], function(err, result) {
+      if(err) throw err;
+      if (result.rows.length > 0) {
+        client.end();
+        return res.status(202).send("User already exists!");
+      } else {
+        var query = client.query("INSERT INTO users(username, password, first_name, last_name, age, profile_pic, city, state, zip_code) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)", dataInputs);
+
+        query.on('end', function() {
+          client.end();
+          return res.status(201).send("Created new user!");
+        });
+      }
+    });
+
+  }); // end client.connect
+}
+
+function loginUser(data, req, res, client) {
+
+  client.connect(function(err) {
+    if(err) {
+      console.error('post failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
+      if(err) throw err;
+      if (result.rows.length === 0) {
+        client.end();
+        res.status(202).send("Incorrect username and/or password!");
+      } else {
+        client.end();
+        return res.status(201).send("Login worked!");
+      }
+    });
+
+  }); // end client.connect
+}
 
 module.exports = {
-
-
-  findAllUsers: function(req, res, next) {
-    
-    User.findAll({ }).then(function(users) {
-      console.log(JSON.stringify(tasks));
-    });
-  },
-
-
-  signup: function(req, res, next) {
-
-    User
-      .findOrCreate({where: {username: 'sdepold'}, defaults: {job: 'Technical Lead JavaScript'}})
-      .spread(function(user, created) {
-         console.log(user.get({
-         plain: true
-         }))
-         console.log(created)
-
-    /*EXAMPLE USER GOES HERE:
-      {
-        username: 'sdepold',
-        job: 'Technical Lead JavaScript',
-        id: 1,
-        createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),
-        updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)
-      }
-      created: true
-    */
-      });
-  },
-
-
-  signin: function(req, res, next) {
-
-    //code goes here
-
-  },
-
-
-  checkAuth: function(req, res, next) {
-
-    //code goes here
-
-  }
-
-
+  getUsers: getUsers,
+  newUser: newUser,
+  loginUser: loginUser
 };

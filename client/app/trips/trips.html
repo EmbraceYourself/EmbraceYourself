@@ -1,0 +1,103 @@
+<div id='container'>
+  <div class='div-view-separator'>
+    <div class="div-title">Create a trip!</div>
+    <form id='tripForm' name="tripForm" ng-submit='createTrip()'>
+      Description
+      <br />
+      <!--<textarea -->
+      <textarea id='textarea-description' ng-model='trip.description' required></textarea>
+      <br />
+      <br />
+      Pickup
+      <input id='input-pickup-location' type='text' placeholder='where is the pickup point?' ng-model='trip.pickup' required>
+      Dropoff
+      <input id='input-pickup-location' type='text' placeholder='where is the drop-off point?' ng-model='trip.dropoff' required>
+      <br />
+      <br />
+      Start
+      <input type="date" name="startTime" ng-model='trip.startDate' required>
+      <select id="time_hour" 
+      		name="time_hour" 
+      		required="required" class="time-select" ng-model='trip.departHour'>
+      		<option value="" selected="selected"></option>
+      		<!--<option value="0">00</option>-->
+      		<option value="1">01</option>
+      		<option value="2">02</option>
+      		<option value="3">03</option>
+      		<option value="4">04</option>
+      		<option value="5">05</option>
+      		<option value="6">06</option>
+      		<option value="7">07</option>
+      		<option value="8">08</option>
+      		<option value="9">09</option>
+      		<option value="10">10</option>
+      		<option value="11">11</option>
+      		<option value="12">12</option>
+      </select>
+      <select id="time_minute" 
+      		name="time_minute" 
+      		required="required" class="time-select" ng-model='trip.departMinute'>
+      		<option value="" selected="selected"></option>
+      		<option value="00">00</option>
+      		<option value="10">10</option>
+      		<option value="20">20</option>
+      		<option value="30">30</option>
+      		<option value="40">40</option>
+      		<option value="50">50</option>
+      </select>
+      <select id="AM_PM" 
+      		name="AM_PM" 
+      		required="required" class="time-select" ng-model='trip.departTimeperiod'>
+      		<option value="" selected="selected"></option>
+      		<option value="AM">AM</option>
+      		<option value="PM">PM</option>
+      </select>
+      <br />
+      End
+      <input type="date" name="endTime" ng-model='trip.endDate' required>
+      <select id="time_hour" 
+      		name="time_hour" 
+      		required="required" class="time-select"ng-model='trip.arriveHour'>
+      		<option value="" selected="selected"></option>
+      		<!--<option value="0">00</option>-->
+      		<option value="1">01</option>
+      		<option value="2">02</option>
+      		<option value="3">03</option>
+      		<option value="4">04</option>
+      		<option value="5">05</option>
+      		<option value="6">06</option>
+      		<option value="7">07</option>
+      		<option value="8">08</option>
+      		<option value="9">09</option>
+      		<option value="10">10</option>
+      		<option value="11">11</option>
+      		<option value="12">12</option>
+      </select>
+      <select id="time_minute" 
+      		name="time_minute" 
+      		required="required" class="time-select" ng-model='trip.arriveMinute'>
+      		<option value="" selected="selected"></option>
+      		<option value="00">00</option>
+      		<option value="10">10</option>
+      		<option value="20">20</option>
+      		<option value="30">30</option>
+      		<option value="40">40</option>
+      		<option value="50">50</option>
+      </select>
+      <select id="AM_PM" 
+      		name="AM_PM" 
+      		required="required" class="time-select" ng-model='trip.arriveTimeperiod'>
+      		<option value="" selected="selected"></option>
+      		<option value="AM">AM</option>
+      		<option value="PM">PM</option>
+      </select>
+      <br />
+      <br />
+      Seats
+      <input id='input-numSeats' type='text' placeholder='available seats?' ng-model='trip.seats' required>
+      <br />
+      <br />
+      <button type='submit'>Create</button>
+    </form>
+  </div>
+</div>

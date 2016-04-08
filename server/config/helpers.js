@@ -1,3 +1,5 @@
+var pg = require('pg');
+var connectionString = 'postgres://localhost:5432/bencheatham';
 
 module.exports = {
 
@@ -10,8 +12,13 @@ module.exports = {
   errorHandler: function (error, req, res, next) {
 
     res.status(500).send({error: error.message}); 
+  },
+
+  createClient: function() {
+
+    return new pg.Client(connectionString);
+
   }
 
-  //as many as we need go here...
 
 }

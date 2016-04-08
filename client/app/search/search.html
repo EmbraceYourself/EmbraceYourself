@@ -1,0 +1,31 @@
+<div id="search-main">
+    <h3>Search Results</h3>
+    <table ng-controller="SearchController">
+    <table ng-show="results.length > 0">
+      <tr>
+        <td> Result </td>
+        <td> Description </td>
+        <td> Pickup Point </td>
+        <td> Dropoff Point </td>
+        <td> Depart Date </td>
+        <td> Depart Time </td>
+        <td> Arrival Date </td>
+        <td> Arrival Time </td>
+        <td> Seats </td>
+        <td> User ID </td>
+      </tr>
+      <tr ng-repeat="result in results">
+        <td> Result: {{ results.length > 0 ? $index + 1 : 0 }}</td>
+        <td> {{ $index + 1 }}</td> 
+        <td> {{ result.description }} </td>
+        <td> {{ result.pickup_point }} </td>
+        <td> {{ result.dropoff_point }} </td>
+        <td> {{ result.depart_date }} </td>
+        <td> {{ result.depart_time }} </td>
+        <td> {{ result.arrival_date }} </td>
+        <td> {{ result.arrival_time }} </td>
+        <td> {{ result.seats }} </td>
+        <td> {{ result.user_id }} </td>
+      </tr> 
+  </table>
+</div>

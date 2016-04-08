@@ -71,17 +71,28 @@ app.post('/authenticate', function (req, res) {
             res.status(202).send("Incorrect username and/or password!");
           } else {
 
-            if (!(req.body.username === result.rows[0].username && req.body.password === result.rows[0].password)) {
+            if (result.rows < 1) {
               res.send(401, 'Wrong user or password');
               return;
             }
 
             profile = {
-              id: result.rows[0].id,
+              user_id: result.rows[0].id,
               username: result.rows[0].username,
               first_name: result.rows[0].first_name,
               last_name: result.rows[0].last_name
             };
+              
+            var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
+
+            res.json({ 
+              token: token, 
+              user_id: profile.user_id,
+              username: profile.username,
+              first_name: profile.first_name,
+              last_name: profile.last_name
+            });
+
             client.end();
             
           }
@@ -115,9 +126,7 @@ app.post('/authenticate', function (req, res) {
   // };
 
   // We are sending the profile inside the token
-  var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
 
-  res.json({ token: token, user_id: profile.id });
 });
 
 app.post('/data/users/login', function (req, res) {

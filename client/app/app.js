@@ -146,12 +146,15 @@ angular.module('ridehook', [
         password: information.password,
         first_name: 'Geralt',
         last_name: 'Of Rivia',
+        email: 'geralt@grivia.com',
         age: 27,
         profile_pic: null,
         city: 'San Francisco',
         state: 'California',
         zip_code: 94103
       };
+
+      // id | username | password | first_name | last_name | email | age | profile_pic | city | state | zip_code 
 
       console.log('info obj to POST to server: ', information);
      // $http.post('/data', information, config).then(successCallback, errorCallback);
@@ -161,7 +164,9 @@ angular.module('ridehook', [
         data: information
       }).then(function (response){
         console.log(response.data);
-            $mdDialog.hide(information);
+        $mdDialog.hide(information);
+      }, function (error) {
+        console.log(error);
       });
     };
 
@@ -170,13 +175,6 @@ angular.module('ridehook', [
       information = {
         username: information.username,
         password: information.password,
-        first_name: 'Geralt',
-        last_name: 'Of Rivia',
-        age: 27,
-        profile_pic: null,
-        city: 'San Francisco',
-        state: 'California',
-        zip_code: 94103
       };
 
       return $http({

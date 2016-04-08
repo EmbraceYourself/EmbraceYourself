@@ -1,0 +1,41 @@
+<div class="searchcontainer">
+  <div id="map" ng-show="results.length > 0"></div>
+  <div id="search-main">
+      <h3 style="margin-bottom: 0px; font-size: 150%;">Search Results</h3>
+      <h4 style="margin-top: 0px; font-size: 80%;">Click on result to view trip information.</h4>
+      <table ng-show="results.length > 0">
+        <tr>
+          <td> Result </td>
+          <td> Trip ID </td>
+          <td> Description </td>
+          <td> Pickup Point </td>
+          <td> Dropoff Point </td>
+          <td> Depart Date </td>
+          <td> Depart Time </td>
+          <td> Arrival Date </td>
+          <td> Arrival Time </td>
+          <td> Seats </td>
+          <td> User ID </td>
+          <td> First Name </td>
+          <td> Last Name </td>
+        </tr>
+        <tr ng-repeat="result in results" ng-click="sendTrip(result.id)">
+          <!-- <td> Result: {{ results.length > 0 ? $index + 1 : 0 }}</td> -->
+          <td> {{ $index + 1 }}</td>
+          <td> {{ result.id }} </td>
+          <td> {{ result.description }} </td>
+          <td> {{ result.pickup_point }} </td>
+          <td> {{ result.dropoff_point }} </td>
+          <td> {{ result.depart_date }} </td>
+          <td> {{ result.depart_time }} </td>
+          <td> {{ result.arrival_date }} </td>
+          <td> {{ result.arrival_time }} </td>
+          <td> {{ result.seats }} </td>
+          <td> {{ result.user_id }} </td>
+          <td> {{ result.first_name }} </td>
+          <td> {{ result.last_name }} </td>
+        </tr>
+    </table>
+    <div ng-show="results.length < 1"> No Results </div>
+  </div>
+</div>

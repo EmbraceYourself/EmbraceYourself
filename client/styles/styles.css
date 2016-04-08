@@ -1,3 +1,112 @@
-#div-main {
-	
+body {
+	width: 100%;
 }
+
+#div-main {
+	width: 100%;
+	margin: auto;
+}
+
+#div-main h3 {
+	text-align: center;
+}
+
+.div-title {
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 20px;
+}
+
+#container {
+	text-align: center;
+}
+#signupTab{
+	height:250px;
+}
+
+/*test */
+/*home below */
+
+#home-main {
+    width: 100%;
+    margin: auto;
+}
+
+#home-main h3 {
+    text-align: center;
+	position: absolute;
+	top: 35.5%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+
+}
+
+#howItWorks{
+	position: absolute;
+	top: 55.0%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+
+}
+
+#div-searchboxes{
+	position: absolute;
+	top: 75.5%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+
+}
+
+/* Trip View Styles */
+
+#tripForm {
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+#textarea-description {
+	width: 500px;
+	height: 50px;
+}
+
+#input-pickup-location {
+	width: 200px;
+}
+/* search view -- start */
+#search-main table, th, td {
+  border: 1px solid black;
+}
+
+#search-main td {
+    width: 10%;
+}
+
+/*#searchcontainer {
+  border: 1px solid blue;
+}*/
+
+#map {
+	border: 1px solid black;
+	height: 300px;
+	width: 75%;
+	margin: 0 auto;
+}
+/*#floating-panel {
+	position: absolute;
+	top: 10px;
+	left: 25%;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	text-align: center;
+	font-family: 'Roboto','sans-serif';
+	line-height: 30px;
+	padding-left: 10px;
+}*/
+
+/*#search-main {
+  border: 1px solid blue;
+}*/
+/* search view -- end */

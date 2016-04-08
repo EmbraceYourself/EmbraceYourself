@@ -1,7 +1,7 @@
 angular.module('ridehook.trips', [])
 
-.controller('TripsController', function ($scope, $http, $window) {
-  $scope.trip = {};
+.controller('TripsController', function ($scope, $http, $window, $location) {
+	$scope.trip = {};
 
   // console.log($window.sessionStorage);
 
@@ -23,17 +23,17 @@ angular.module('ridehook.trips', [])
         $scope.trip.endDate = newArriveDate;
         console.log($scope.trip.endDate);
 
-    var tripObj = {
-      description: $scope.trip.description,
-      pickup_point: $scope.trip.pickup,
-      dropoff_point: $scope.trip.dropoff,
-      depart_date: $scope.trip.startDate,//Date.parse($scope.trip.startDate),
-      depart_time: $scope.trip.departHour + ':' + $scope.trip.departMinute + $scope.trip.departTimeperiod,
-      arrival_date: $scope.trip.endDate,//Date.parse($scope.trip.endDate),
-      arrival_time: $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod,
-      seats: Number($scope.trip.seats),
-      user_id: $window.sessionStorage.id // will reconfig this when we can get current user id from session
-    };
+		var tripObj = {
+			description: $scope.trip.description,
+			pickup_point: $scope.trip.pickup,
+			dropoff_point: $scope.trip.dropoff,
+			depart_date: $scope.trip.startDate,	//Date.parse($scope.trip.startDate),
+			depart_time: $scope.trip.departHour + ':' + $scope.trip.departMinute + $scope.trip.departTimeperiod,
+			arrival_date: $scope.trip.endDate,	//Date.parse($scope.trip.endDate),
+			arrival_time: $scope.trip.arriveHour + ':' + $scope.trip.arriveMinute + $scope.trip.arriveTimeperiod,
+			seats: Number($scope.trip.seats),
+			user_id: $window.sessionStorage.id 	// will reconfig this when we can get current user id from session
+		};
 
     // new trip dummy data
 
@@ -56,12 +56,12 @@ angular.module('ridehook.trips', [])
       method: 'POST',
       url: '/data/trips/newtrip',
       data: tripObj
-
-    })
-    .then(function (resp) {
-      console.log('Successful POST request: ', resp);
-      return resp;
-    });
+	})
+	.then(function (resp) {
+		console.log('Successful POST request: ', resp);
+		//return resp;
+		$location.url('/home');
+	});
 
   };
 });

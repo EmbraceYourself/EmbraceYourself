@@ -1,7 +1,79 @@
 <div id="container" class="trip-view">
 
+   <!--Development form only.  Do not erase for now -->
+  <form class="get-trip" name="getTrip" role="form" ng-submit='getThisTrip()'>
+    <div>
+      <p></p>
+        <input type="submit" value="GetTrip">
+      <p></p>
+    </div>
+  </form>
+
+
+
+
 <div class="trip-head">
-<p>{{startpoint}} -> {{destination}}</p>
+<p>{{trip.pickup_point}} -> {{trip.dropoff_point}}</p>
 </div>
 
 
+
+
+
+
+
+  <div class="trip-view">
+
+    <div id="container" class="main-block">
+      <ul>
+        <li class="main-trip-block">
+          <span class="label"> Pickup Point: </span>
+          <span class="detail">{{ trip.pickup_point}}</span>
+        </li>
+        <li class="main-trip-block">
+          <span class="label"> Dropoff Point: </span>
+          <span class="detail"> {{ trip.dropoff_point}}</span>
+        </li>
+        <li class="main-trip-block">
+          <span class="label"> Date: </span>
+          <div class="detail"> {{trip.depart_date}} at {{trip.depart_time}} </div>
+        </li>
+        <li class="main-trip-block">
+          <span class="label"> Details:  </span>
+          <span class="detail">{{trip.window}}
+              <p>{{trip.cargo}}  </p>
+          </span>
+        </li>
+      </ul>
+      <div class="user-quote">
+        <img class="thumb  user-thumb" ng-src="{{user.profile_pic}}" alt="{{user.name}}">
+
+        <p class="user-quote-title"><strong>{{user.username}} says:</strong></p>
+        <p class="user-trip-description">{{trip.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="container" class="top-right-sidebar">
+
+    <p class="price-and-seats"> ${{trip.seat_price}} | {{trip.seats}} Seats left</p>
+
+    <p class="confirm-seat-message">Click to book your seat:</p>
+    <input class="btn btn-lg btn-primary" type="button" value="Confirm Seat" ng-click="confirmSeat()">
+
+
+
+  </div>
+
+  <div id="container" class="driver-side-bar">
+
+  
+
+  </div>
+
+
+
+
+
+
+</div>

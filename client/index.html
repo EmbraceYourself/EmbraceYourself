@@ -5,14 +5,15 @@
     <meta charset="utf-8" />
     <title id="Ridehook">Ridehook</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles/viewStyles.css" />
     <link rel="stylesheet" href="/scripts/angular-material/angular-material.css">
 </head>
 
 <body>
     <div id="signup" class="popupContainer" ng-controller="AppCtrl" ng-cloak="">
         <div layout="row" layout-wrap="" layout-margin="" layout-align="end">
-            <md-button ng-show="loggedIn" class=" md-flat"> <span style="color: blue;">{{ loggedIn }}</span> is logged in! </md-button>
             <md-button class=" md-flat" href="/#/trips">Want to Drive?</md-button>
+            <md-button ng-show="loggedIn" class=" md-flat">Hello, <span style="color: blue;">{{ loggedIn }}</span>!</md-button>
             <md-button ng-hide="loggedIn" class="md-primary md-flat" ng-click="showSignUp($event)">Sign Up</md-button>
             <!-- <md-button class="md-primary md-flat" ng-click="showSignIn($event)" ng-hide='showSignInButton.loggedIn'>Sign In</md-button> -->
             <md-button class="md-primary md-flat" ng-click="showSignIn($event)" ng-hide='loggedIn'>Sign In</md-button>
@@ -107,9 +108,9 @@
     <script src="app/reviews/reviews.js"></script>
     <script src="app/trips/viewtrip.js"></script>
     <script src="app/app.js"></script>
+    <script src="app/profile/profile.js"></script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcyA-b6Nrf7_FbHkKHsJDAaVQmc71ajT4">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcyA-b6Nrf7_FbHkKHsJDAaVQmc71ajT4"></script>
     <script src="app/search/gmap.js"></script>
 
 </body>

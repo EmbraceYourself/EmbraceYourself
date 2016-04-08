@@ -33,7 +33,7 @@ function newTrip(data, req, res, client) {
 }
 
 
-function getTrip(data, req, res) {
+function getTrip(req, res) {
 
   var client = helper.createClient();
 
@@ -43,18 +43,24 @@ function getTrip(data, req, res) {
       return res.status(500).json({ success: false, data: err});
     }
 
-    client.query("SELECT * FROM trips WHERE tripID = $1", [data.tripID], function(err, result) {
-      if(err) throw err;
-      if (!result) {
-        client.end();
-        res.status(202).send("Trip could not be found");
-      } else {
-        client.end();
-        return res.status(201).send(result);
-      }
+    var tripID = req.body.tripID;
+
+    var query = client.query("SELECT * FROM trips WHERE id = $1", [tripID]);
+
+    var foundTrip = [];
+
+    query.on('row', function(row) {
+      console.log(row)
+      foundTrip.push(row);
     });
 
-  });
+    query.on('end', function() {
+      client.end();
+      return res.send(foundTrip);
+    });
+
+    });
+
 }
 
 // Keep this for review!

@@ -4,7 +4,9 @@ module.exports = function (app) {
 
 
   console.log('IN TRIP CONTROLLER......');
-  app.post('/view_trip', tripController.getTrip);
+  app.post('/add_rider', riderController.addRider);
+  app.post('/get_rider', riderController.getRider);
+
 
 
 }

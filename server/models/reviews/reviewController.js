@@ -14,8 +14,8 @@ module.exports = {
     var client = helper.createClient();
 
     var review = [
-      1,
-      2,
+      1,  //reviewing user id
+      2,   //user id being reviewed
       req.body.review_stars,
       req.body.review,
       req.body.created_on,
@@ -75,18 +75,5 @@ module.exports = {
 
     });
 
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
 }

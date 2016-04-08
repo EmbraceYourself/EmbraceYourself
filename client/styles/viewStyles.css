@@ -1,0 +1,179 @@
+
+.trip-head {
+  font-size: 30px;
+
+
+}
+
+.trip-view {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+
+}
+
+
+.main-block {
+  position: relative;
+  display: inline-block;
+  float: left;
+  clear: both;
+  height: 500px;
+  padding-top: 15px;
+  margin-left: 5px;
+  width: 70%;
+  background-color: #B2C2D0;
+  border:2px solid black;
+
+  border-radius: 6px;
+}
+
+
+.top-right-sidebar {
+  position: relative;
+  display: inline-block;
+  clear: both;
+  height: 500px;
+  padding-top: 15px;
+  margin-left: 5px;
+  width: 20%;
+  background-color: #B2C2D0;
+  border:2px solid black;
+
+  border-radius: 6px;
+}
+
+.main-trip-block {
+  padding-top: 15px;
+
+}
+
+.label {
+ float: left;
+ padding-left: 20px;
+ text-decoration: bold;
+}
+
+.detail {
+ float: none;
+ padding-right: 20px;
+
+}
+
+
+ul {
+
+ list-style-type: none;
+
+}
+
+li .detail {
+
+}
+
+
+
+.thumb {
+  float: left;
+  margin: -0.5em 1em 1.5em 0;
+  padding-bottom: 1em;
+  height: 100px;
+  width: 100px;
+}
+
+.user-thumb {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+
+}
+
+.user-quote {
+ position: relative;
+ width: 90%; 
+ height: 110px; 
+ border:2px solid #7293A0;
+ border-radius: 6px;
+}
+
+
+.user-quote-title {
+ float: left;
+
+
+}
+
+
+.price-and-seats {
+  font-size: 25px;
+
+}
+
+
+.btn-lg,
+.btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+
+
+

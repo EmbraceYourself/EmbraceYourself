@@ -92,15 +92,13 @@ angular.module('ridehook', [
     }
     return sObj;
 })
-
 .factory('tripIDFactory', function() {
     var tObj = {
         tripID: null
     }
     return tObj;
 })
-
-.controller('AppCtrl', function($scope, $mdDialog, $window, $location) {
+.controller('AppCtrl', function ($scope, $mdDialog, $window, $location) {
 
     $scope.loggedIn = $window.sessionStorage.un;
 

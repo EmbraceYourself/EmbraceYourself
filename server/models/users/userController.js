@@ -69,22 +69,23 @@ function loginUser(data, req, res, client) {
     }
 
     client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
+      console.log('userController.loginUser query result: ', result.rows[0]);
       if(err) throw err;
       if (!result) {
         client.end();
         res.status(202).send("Incorrect username and/or password!");
       } else {
-         var profile = {
-    id: 123,
-    username: 'johndoe',
-    first_name: 'John',
-    last_name: 'Doe'
-  };
+  //        var profile = {
+  //   id: 123,
+  //   username: 'johndoe',
+  //   first_name: 'John',
+  //   last_name: 'Doe'
+  // };
 
-  // We are sending the profile inside the token
-  var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
+  // // We are sending the profile inside the token
+  // var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });
 
-  res.json({ token: token, user_id: profile.id });       
+  // res.json({ token: token, user_id: profile.id });       
         client.end();
         return res.status(201).send("Login worked!");
       }

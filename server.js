@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 app.use(express.static(__dirname + '/client'));
 
-app.use('/data', expressJwt({secret: 'secret'})); // to support tokens and protect every call to /data
+//app.use('/data', expressJwt({secret: 'secret'})); // to support tokens and protect every call to /data
 
 // app.get('/', function(req, res){
 //   res.send("Rideshare server up and running!");
@@ -49,44 +49,70 @@ app.post('/data/users/signup', function (req, res) {
 });
 
 app.post('/authenticate', function (req, res) {
+
+  console.log("Post received!");
+  var profile = {};
+
+  if (req.body) {
+    var client = new pg.Client(connectionString);
+
+    function loginUser(data, req, res, client) {
+
+      client.connect(function(err) {
+        if(err) {
+          console.error('post failed!');
+          return res.status(500).json({ success: false, data: err});
+        }
+
+        client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
+          if(err) throw err;
+          if (!result) {
+            client.end();
+            res.status(202).send("Incorrect username and/or password!");
+          } else {
+
+            if (!(req.body.username === result.rows[0].username && req.body.password === result.rows[0].password)) {
+              res.send(401, 'Wrong user or password');
+              return;
+            }
+
+            profile = {
+              id: result.rows[0].id,
+              username: result.rows[0].username,
+              first_name: result.rows[0].first_name,
+              last_name: result.rows[0].last_name
+            };
+            client.end();
+            
+          }
+        });
+
+      });
+    }
+    loginUser(req.body, req, res, client);
+
+    
+  }
+  
+
   // Need to validate req.body.username and req.body.password
   //if is invalid, return 401
 
   // run db check on user ex:
   
-  // function loginUser(data, req, res, client) {
 
-  //   client.connect(function(err) {
-  //     if(err) {
-  //       console.error('post failed!');
-  //       return res.status(500).json({ success: false, data: err});
-  //     }
-
-  //     client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [data.username, data.password], function(err, result) {
-  //       if(err) throw err;
-  //       if (!result) {
-  //         client.end();
-  //         res.status(202).send("Incorrect username and/or password!");
-  //       } else {       
-  //         client.end();
-  //         
-  //       }
-  //     });
-
-  //   });
-  // }
   
-  if (!(req.body.username === 'john.doe' && req.body.password === 'foobar')) {
-    res.send(401, 'Wrong user or password');
-    return;
-  }
+  // if (!(req.body.username === 'john.doe' && req.body.password === 'foobar')) {
+  //   res.send(401, 'Wrong user or password');
+  //   return;
+  // }   
 
-  var profile = {
-    id: 123,
-    username: 'johndoe',
-    first_name: 'John',
-    last_name: 'Doe'
-  };
+  // var profile = {
+  //   id: 123,
+  //   username: 'johndoe',
+  //   first_name: 'John',
+  //   last_name: 'Doe'
+  // };
 
   // We are sending the profile inside the token
   var token = jwt.sign(profile, 'secret', { expiresIn: 18000 });

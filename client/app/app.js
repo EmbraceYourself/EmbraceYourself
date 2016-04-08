@@ -181,7 +181,7 @@ angular.module('ridehook', [
 
       return $http({
         method: 'POST',
-        url: '/data/users/login',
+        url: '/authenticate',
         data: information
       }).then(function (response){
 

@@ -107,13 +107,6 @@ angular.module('ridehook', [
       }
 
       return loggedIn;
-      // return $http({
-      //   method: 'POST',
-      //   url: '/authenticate'
-      // })
-      // .then(function (resp) {
-
-      // });
     };
 
     return {

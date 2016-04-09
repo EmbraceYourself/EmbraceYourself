@@ -98,13 +98,35 @@ angular.module('ridehook', [
       }
   };
 })
-.factory('searchResults', function() {
+.factory('authenticate', function ($window) {
+    var loggedIn = false;
+
+    var loginCheck = function () {
+      if($window.sessionStorage.id){
+        loggedIn = true;
+      }
+
+      return loggedIn;
+      // return $http({
+      //   method: 'POST',
+      //   url: '/authenticate'
+      // })
+      // .then(function (resp) {
+
+      // });
+    };
+
+    return {
+      loginCheck: loginCheck
+    };
+})
+.factory('searchResults', function () {
     var sObj = {
         results: []
     }
     return sObj;
 })
-.factory('tripIDFactory', function() {
+.factory('tripIDFactory', function () {
     var tObj = {
         tripID: null
     }

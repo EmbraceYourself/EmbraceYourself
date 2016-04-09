@@ -98,6 +98,8 @@
       <br />
       <br />
       <button type='submit'>Create</button>
+      <p id="err_msg" ng-show="!(loggedIn)">Must be logged in to create a trip.</p>
+      <p id="confirm_msg" ng-show="canConfirm">Trip created!</p>
     </form>
   </div>
 </div>

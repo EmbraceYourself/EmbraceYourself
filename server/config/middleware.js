@@ -28,4 +28,6 @@ module.exports = function (app, express) {
   require('../models/trips/tripRoutes.js')(tripRouter);
   require('../models/reviews/reviewRoutes.js')(reviewRouter);
   require('../models/users/userRoutes.js')(userRouter);
+  require('../models/riders/riderRoutes.js')(riderRouter);
+
 };

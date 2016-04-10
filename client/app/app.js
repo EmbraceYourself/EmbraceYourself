@@ -13,23 +13,6 @@ angular.module('ridehook', [
 
 ])
 // Angular's within-the-page routing system (uses 'angular-route')
-.factory('authInterceptor', function($rootScope, $q, $window) {
-  return {
-      request: function(config) {
-          config.headers = config.headers || {};
-          if ($window.sessionStorage.token) {
-              config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
-          }
-          return config;
-      },
-      response: function(response) {
-          if (response.status === 401) {
-              // handle the case where the user is not authenticated
-          }
-          return response || $q.when(response);
-      }
-  };
-})
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
   //Each route binds a view (.html) and a controller to an endpoint (/signin)
@@ -98,15 +81,48 @@ angular.module('ridehook', [
 // .run(function ($rootScope, $location) {
 
 // })
-.factory('searchResults', function() {
+.factory('authInterceptor', function($rootScope, $q, $window) {
+  return {
+      request: function(config) {
+          config.headers = config.headers || {};
+          if ($window.sessionStorage.token) {
+              config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+          }
+          return config;
+      },
+      response: function(response) {
+          if (response.status === 401) {
+              // handle the case where the user is not authenticated
+          }
+          return response || $q.when(response);
+      }
+  };
+})
+.factory('authenticate', function ($window) {
+    var loggedIn = false;
+
+    var loginCheck = function () {
+      if($window.sessionStorage.id){
+        loggedIn = true;
+      }
+
+      return loggedIn;
+    };
+
+    return {
+      loginCheck: loginCheck
+    };
+})
+.factory('searchResults', function () {
     var sObj = {
         results: []
     }
     return sObj;
 })
-.factory('tripIDFactory', function() {
+.factory('tripIDFactory', function () {
     var tObj = {
-        tripID: null
+        tripID: null,
+        tripResult: null // trip result that is in the form of JSON
     }
     return tObj;
 })

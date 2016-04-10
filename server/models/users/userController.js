@@ -110,6 +110,35 @@ function getUser(req, res) {
     });
   }); // end client.connect
 }
+function getUserProfile(reqbody, req, res, client) {
+
+  var client = helper.createClient();
+
+  console.log('Here in getUser')
+  //console.log(req.body.userID)
+  // console.log("request is:", req)
+
+
+  var results = [];
+  client.connect(function(err) {
+    if(err) {
+      console.error('Get failed!');
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    var query = client.query("SELECT * FROM users WHERE id = $1", [reqbody.userID]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+        
+      return res.send(results);
+    });
+  }); // end client.connect
+}
 
 // make a profile
 function newBiography(data, req, res, client) {
@@ -122,7 +151,8 @@ function newBiography(data, req, res, client) {
 
     client.query("SELECT * FROM users WHERE id = $1", [data.id], function(err, result) {
       if(err) throw err;
-      if (result.rows.length > 0) {
+      console.log("data:", data);
+      if (result.rows.length < 1) {
         client.end();
         return res.status(202).send("User ID not present!");
       } else {
@@ -147,5 +177,6 @@ module.exports = {
   newUser: newUser,
   loginUser: loginUser,
   newBiography: newBiography,
-  getUser: getUser
+  getUser: getUser,
+  getUserProfile: getUserProfile
 };

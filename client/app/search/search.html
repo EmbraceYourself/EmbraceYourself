@@ -19,7 +19,7 @@
           <td> First Name </td>
           <td> Last Name </td>
         </tr>
-        <tr ng-repeat="result in results" ng-click="sendTrip(result.id)">
+        <tr ng-repeat="result in results" ng-click="sendTrip(result.id, result)">
           <!-- <td> Result: {{ results.length > 0 ? $index + 1 : 0 }}</td> -->
           <td> {{ $index + 1 }}</td>
           <td> {{ result.id }} </td>

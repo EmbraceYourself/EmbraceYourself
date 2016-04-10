@@ -1,1 +1,47 @@
-<p>cat</p>
+<div ng-controller="ProfileController">
+<!-- left column
+	<profile picture
+	<verified member table
+	<in column or table include
+		<verified email address
+		<verified phone number
+		<# of reviews
+		<verified Driver's License
+
+	<about me box>
+		<column (maybe within the box with on outline)
+			<car
+			<languages
+			<interests
+
+	<right column -->
+	<div id="verifiedcolumnleft">
+		<img src="http://placekitten.com/g/200/300">
+		<br></br>
+		<td class="cat">Verified Member</td>
+			<p >Verified Email Address</p>
+			<p>101 Reviews</p>
+			<p>Verified Driver's License</p>
+	</div >
+	<div id="rightcolumn">
+		<h1>Hey, I'm {{firstname}}<span ng-show="!loggedIn" style="color: red;">not logged in!</span></h1>
+		<p>{{city}}, {{state}}<p>
+		<p>4.8 Stars</p>
+		<br></br>
+		<!-- <p id="bioparagraph">{{biography}}</p> -->
+		<form ng-submit="postBio(biography)" validate>
+			<textarea id="textbox" ng-model="biography" placeholder="Tell your riders about yourself!" required></textarea>
+			<br></br>
+			<md-button type="submit">Submit Bio</md-button>
+		</form>
+
+
+	</div>
+	<div id="reviewsbelowrightcolumn">
+
+	</div>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+</div>

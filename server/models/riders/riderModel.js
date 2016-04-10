@@ -13,7 +13,7 @@ var riderTable = function () {
     var query = client.query('CREATE TABLE IF NOT EXISTS riders(id SERIAL PRIMARY KEY, \
       trip_id INTEGER REFERENCES trips (id), \
       user_id INTEGER REFERENCES users (id), \
-      review_id INTERGER REFERENCES reviews (id), \
+      review_id INTEGER REFERENCES reviews (id), \
       trip_end_date VARCHAR(255),\
       trip_end_time VARCHAR(255),\
       created_on VARCHAR(255), \
@@ -27,5 +27,5 @@ var riderTable = function () {
 }
 
 module.exports = {
-  reviewTable: reviewTable
+  riderTable: riderTable
 };

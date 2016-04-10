@@ -1,10 +1,12 @@
 
 angular.module('ridehook.profile', [])
 
-.controller('ProfileController', function ($scope, $window, $location, $http) {
 
 	$scope.loggedIn = $window.sessionStorage.id;
 	$scope.profile_pic = $window.sessionStorage.pp;
+
+.controller('ProfileController', function ($scope, $window, $location, $http, tripIDFactory) {
+
 
 	if ($window.sessionStorage.id){
 	$scope.firstname = $window.sessionStorage.fn;
@@ -23,7 +25,7 @@ angular.module('ridehook.profile', [])
 			data: {userID: $window.sessionStorage.id}
 		})
 		.then(function(resp){
-			console.log(resp.data[0].city);
+			console.log(tripIDFactory);
 			$scope.city = resp.data[0].city;
 			$scope.state = resp.data[0].state;
 			$scope.biography = resp.data[0].biography;

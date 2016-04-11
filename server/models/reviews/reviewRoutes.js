@@ -4,7 +4,7 @@ module.exports = function (app) {
 
  console.log('IN REVIEW CONTROLLER');
  app.post('/addReview', reviewController.addReview);
- app.get('/getUserReviews', reviewController.getReviews);
+ app.post('/get_user_reviews', reviewController.getReviews);
 
 
 }

@@ -1,11 +1,20 @@
 angular.module('ridehook.trips', [])
 
-.controller('TripsController', function ($scope, $http, $window, $location) {
-	$scope.trip = {};
+.controller('TripsController', function ($scope, $http, $window, $location, authenticate) {
+
+  console.log(authenticate.loginCheck());
+  $scope.loggedIn = true;
+
+  $scope.trip = {};
 
   // console.log($window.sessionStorage);
 
   $scope.createTrip = function () {
+
+  	if(!authenticate.loginCheck()){
+  	  $scope.loggedIn = authenticate.loginCheck();
+  	  return;
+  	}
 
     console.log('Start date format: ', $scope.trip.startDate.toLocaleDateString());
     console.log('End date format: ', $scope.trip.endDate.toLocaleDateString());
@@ -30,7 +39,8 @@ angular.module('ridehook.trips', [])
 	.then(function (resp) {
 		console.log('Successful POST request: ', resp);
 		// return resp;
-		$location.url('/home');
+		$scope.canConfirm = true;
+	    setTimeout(function () { window.location.href = '/#/home'; }, 2000);
 	});
 
   };

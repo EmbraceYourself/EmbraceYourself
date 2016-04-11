@@ -34,7 +34,7 @@
   position: relative;
   display: inline-block;
   clear: both;
-  height: 500px;
+  height: 270px;
   padding-top: 15px;
   margin-left: 5px;
   width: 20%;
@@ -45,8 +45,40 @@
 }
 
 .main-trip-block {
+
   padding-top: 15px;
 
+}
+
+.driver-side-bar {
+  position: relative;
+  display: inline-block;
+  clear: both;
+  height: 500px;
+  padding-top: 15px;
+  margin-left: 5px;
+  width: 20%;
+  background-color: #B2C2D0;
+  border:2px solid black;
+
+  border-radius: 6px;
+
+}
+
+#driver-intro {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 90%;
+
+
+}
+
+#user-review-list {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 90%;
 }
 
 .label {
@@ -72,6 +104,14 @@ li .detail {
 
 }
 
+li.review-driver-side-bar {
+  width: 95%;
+  background-color: #B2C2D0;
+  border:1px solid black;
+  padding: 5px;
+
+  border-radius: 2px; 
+}
 
 
 .thumb {
@@ -114,66 +154,184 @@ li .detail {
 
 .btn-lg,
 .btn-group-lg > .btn {
+  width: 150px;
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
 
-.btn-primary {
+.btn-not-riding {
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
 }
-.btn-primary:focus,
-.btn-primary.focus {
+.btn-not-riding:focus,
+.btn-not-riding.focus {
   color: #fff;
   background-color: #286090;
   border-color: #122b40;
 }
-.btn-primary:hover {
+.btn-not-riding:hover {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
+.btn-not-riding:active,
+.btn-not-riding.active,
+.open > .dropdown-toggle.btn-not-riding {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
-.btn-primary:active:hover,
-.btn-primary.active:hover,
-.open > .dropdown-toggle.btn-primary:hover,
-.btn-primary:active:focus,
-.btn-primary.active:focus,
-.open > .dropdown-toggle.btn-primary:focus,
-.btn-primary:active.focus,
-.btn-primary.active.focus,
-.open > .dropdown-toggle.btn-primary.focus {
+.btn-not-riding:active:hover,
+.btn-not-riding.active:hover,
+.open > .dropdown-toggle.btn-not-riding:hover,
+.btn-not-riding:active:focus,
+.btn-not-riding.active:focus,
+.open > .dropdown-toggle.btn-not-riding:focus,
+.btn-not-riding:active.focus,
+.btn-not-riding.active.focus,
+.open > .dropdown-toggle.btn-not-riding.focus {
   color: #fff;
   background-color: #204d74;
   border-color: #122b40;
 }
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
+.btn-not-riding:active,
+.btn-not-riding.active,
+.open > .dropdown-toggle.btn-not-riding {
   background-image: none;
 }
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
-fieldset[disabled] .btn-primary:hover,
-.btn-primary.disabled:focus,
-.btn-primary[disabled]:focus,
-fieldset[disabled] .btn-primary:focus,
-.btn-primary.disabled.focus,
-.btn-primary[disabled].focus,
-fieldset[disabled] .btn-primary.focus {
+.btn-not-riding.disabled:hover,
+.btn-not-riding[disabled]:hover,
+fieldset[disabled] .btn-not-riding:hover,
+.btn-not-riding.disabled:focus,
+.btn-not-riding[disabled]:focus,
+fieldset[disabled] .btn-not-riding:focus,
+.btn-not-riding.disabled.focus,
+.btn-not-riding[disabled].focus,
+fieldset[disabled] .btn-not-riding.focus {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 
 
+.btn-riding {
+  color: #fff;
+  background-color: #74A82A;
+  border-color: #2e6da4;
+}
+.btn-riding:focus,
+.btn-riding.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-riding:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-riding:active,
+.btn-riding.active,
+.open > .dropdown-toggle.btn-riding {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-riding:active:hover,
+.btn-riding.active:hover,
+.open > .dropdown-toggle.btn-riding:hover,
+.btn-riding:active:focus,
+.btn-riding.active:focus,
+.open > .dropdown-toggle.btn-riding:focus,
+.btn-riding:active.focus,
+.btn-riding.active.focus,
+.open > .dropdown-toggle.btn-riding.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.btn-riding:active,
+.btn-riding.active,
+.open > .dropdown-toggle.btn-riding {
+  background-image: none;
+}
+.btn-riding.disabled:hover,
+.btn-riding[disabled]:hover,
+fieldset[disabled] .btn-riding:hover,
+.btn-riding.disabled:focus,
+.btn-riding[disabled]:focus,
+fieldset[disabled] .btn-riding:focus,
+.btn-riding.disabled.focus,
+.btn-riding[disabled].focus,
+fieldset[disabled] .btn-riding.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+
+
+
+
+
+.btn-cancel-ride {
+  color: #fff;
+  background-color: #C94612;
+  border-color: #2e6da4;
+}
+.btn-cancel-ride:focus,
+.btn-cancel-ride.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-cancel-ride:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-cancel-ride:active,
+.btn-cancel-ride.active,
+.open > .dropdown-toggle.btn-cancel-ride {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-cancel-ride:active:hover,
+.btn-cancel-ride.active:hover,
+.open > .dropdown-toggle.btn-cancel-ride:hover,
+.btn-cancel-ride:active:focus,
+.btn-cancel-ride.active:focus,
+.open > .dropdown-toggle.btn-cancel-ride:focus,
+.btn-cancel-ride:active.focus,
+.btn-cancel-ride.active.focus,
+.open > .dropdown-toggle.btn-cancel-ride.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.btn-cancel-ride:active,
+.btn-cancel-ride.active,
+.open > .dropdown-toggle.btn-cancel-ride {
+  background-image: none;
+}
+.btn-cancel-ride.disabled:hover,
+.btn-cancel-ride[disabled]:hover,
+fieldset[disabled] .btn-cancel-ride:hover,
+.btn-cancel-ride.disabled:focus,
+.btn-cancel-ride[disabled]:focus,
+fieldset[disabled] .btn-cancel-ride:focus,
+.btn-cancel-ride.disabled.focus,
+.btn-cancel-ride[disabled].focus,
+fieldset[disabled] .btn-cancel-ride.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+
+.btn-hide {
+ display: none;
+}
 
 

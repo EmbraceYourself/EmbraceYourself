@@ -121,6 +121,15 @@ app.post('/data/users/profile', function (req, res) {
   }
 });
 
+app.post('/data/users/getProfileInfo', function (req, res) {
+  console.log("Post received!");
+ // console.log(req.body.userID);
+  if (req.body) {
+    var client = new pg.Client(connectionString);
+    userController.getUserProfile(req.body, req, res, client);
+  }
+});
+
 app.post('/data/trips/newtrip', function (req, res) {
   console.log("Post received!");
   if (req.body) {
@@ -128,6 +137,7 @@ app.post('/data/trips/newtrip', function (req, res) {
     tripController.newTrip(req.body, req, res, client);
   }
 });
+
 
 app.post('/data/trips/findtrip', function (req, res) {
   console.log("Post received!");

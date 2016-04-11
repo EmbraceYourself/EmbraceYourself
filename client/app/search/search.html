@@ -1,41 +1,70 @@
 <div class="searchcontainer">
   <div id="map" ng-show="results.length > 0"></div>
   <div id="search-main">
-      <h3 style="margin-bottom: 0px; font-size: 150%;">Search Results</h3>
-      <h4 style="margin-top: 0px; font-size: 80%;">Click on result to view trip information.</h4>
-      <table ng-show="results.length > 0">
-        <tr>
-          <td> Result </td>
-          <td> Trip ID </td>
-          <td> Description </td>
-          <td> Pickup Point </td>
-          <td> Dropoff Point </td>
-          <td> Depart Date </td>
-          <td> Depart Time </td>
-          <td> Arrival Date </td>
-          <td> Arrival Time </td>
-          <td> Seats </td>
-          <td> User ID </td>
-          <td> First Name </td>
-          <td> Last Name </td>
-        </tr>
-        <tr ng-repeat="result in results" ng-click="sendTrip(result.id)">
-          <!-- <td> Result: {{ results.length > 0 ? $index + 1 : 0 }}</td> -->
-          <td> {{ $index + 1 }}</td>
-          <td> {{ result.id }} </td>
-          <td> {{ result.description }} </td>
-          <td> {{ result.pickup_point }} </td>
-          <td> {{ result.dropoff_point }} </td>
-          <td> {{ result.depart_date }} </td>
-          <td> {{ result.depart_time }} </td>
-          <td> {{ result.arrival_date }} </td>
-          <td> {{ result.arrival_time }} </td>
-          <td> {{ result.seats }} </td>
-          <td> {{ result.user_id }} </td>
-          <td> {{ result.first_name }} </td>
-          <td> {{ result.last_name }} </td>
-        </tr>
+    <h3 style="margin-bottom: 0px; font-size: 150%; margin-left: 2%;">Search Results</h3>
+    <h4 style="margin-top: 0px; font-size: 80%; margin-left: 2%;">Click on a result to view trip information.</h4>
+    <table ng-show="results.length > 0" style="border-collapse: collapse;">
+      <!-- <tr>
+        <th> Pickup Point </th>
+        <th> Dropoff Point </th>
+        <th> Depart Date </th>
+      </tr>
+      <tr>
+        <th class="szero"> {{ results[0].pickup_point }} </th>
+        <th class="szero"> {{ results[0].dropoff_point }} </th>
+        <th class="szero"> {{ results[0].depart_date }} </th>
+      </tr> -->
+      <tr>
+        <th> Pickup Point: </th>
+        <td class="szero"> {{ results[0].pickup_point }} </th>
+      </tr>
+      <tr>
+        <th> Dropoff Point: </th>
+        <td class="szero"> {{ results[0].dropoff_point }} </th>
+      </tr>
+      <tr>
+        <th> Depart Date: </th>
+        <td class="szero"> {{ results[0].depart_date }} </th>
+      </tr>
     </table>
-    <div ng-show="results.length < 1"> No Results </div>
+    <!-- <table ng-show="results.length > 0" border="1" bordercolor="green" bgcolor="yellow"> -->
+    <table ng-show="results.length > 0" width="95%"  style="border-collapse: collapse; margin-top: 5px;">
+      <tr class="start">
+        <!-- <td> Result </td>    Result not needed? -->
+        <td> Trip ID </td>
+        <td> Photo </td>
+        <td colspan="2"> Driver's Name </td>
+        <td width="40%"> Description </td>
+        <!-- <td> Pickup Point </td>
+        <td> Dropoff Point </td>
+        <td> Depart Date </td> -->
+        <td> Depart Time </td>
+        <td> Arrival Date </td>
+        <td> Arrival Time </td>
+        <td> Seats </td>
+        <!-- <td> Driver's ID </td>    Driver ID not needed? -->
+        <!-- <td> First Name </td>
+        <td> Last Name </td> -->
+      </tr>
+      <tr class="result" ng-repeat="result in results" ng-click="sendTrip(result.id, result)" style="text-align = center">
+        <!-- <td> Result: {{ results.length > 0 ? $index + 1 : 0 }}</td> -->
+        <!-- <td> {{ $index + 1 }}</td> Result index not needed? -->
+        <td> {{ result.id }} </td>
+        <td> <img class="user-tumb" ng-src="{{ result.profile_pic }}"> </td>
+        <td colspan="2"> {{ result.first_name }} {{ result.last_name }} </td>
+        <td width="40%" class="description"> {{ result.description }} </td>
+        <!-- <td> {{ result.pickup_point }} </td>
+        <td> {{ result.dropoff_point }} </td>
+        <td> {{ result.depart_date }} </td> -->
+        <td> {{ result.depart_time }} </td>
+        <td> {{ result.arrival_date }} </td>
+        <td> {{ result.arrival_time }} </td>
+        <td> {{ result.seats }} </td>
+        <!-- <td> {{ result.user_id }} </td>   Driver ID not needed? -->
+        <!-- <td> {{ result.first_name }} </td>
+        <td> {{ result.last_name }} </td> -->
+      </tr>
+    </table>
+    <div ng-show="results.length < 1" style="margin-left: 2%"> No Results </div>
   </div>
 </div>

@@ -1,0 +1,140 @@
+#search-main table{
+  border-collapse:collapse;
+  text-align:left;
+  /*width:100%;*/
+  margin-left:2%;
+  margin-right:2%;
+  padding:0;
+  background:#7f8c8d;
+  animation: responsive 5s infinite ease-in-out;
+}
+#search-main {
+  /*font:normal 12px/150% Arial, Helvetica, sans-serif;*/
+  font-family: Arial, Verdana, sans-serif;
+  overflow:hidden;
+  /*margin:0 auto;*/
+  display:block;
+  /*width:95%;*/
+  /*padding:2.5%;*/
+}
+
+#search-main table {
+  background-color: #b8d1f3;
+  border-color: #4E95F4;
+}
+
+.start {
+  font-size:1em;
+  background-color: #BCE7F1;
+}
+#search-main table tbody td,
+#search-main table tbody tr{
+  /*font-family: 'Vollkorn', serif;*/
+  font-size:1em;
+  border:none;
+  padding:1em;
+}
+/*#search-main table tbody tr:nth-child(odd){
+  background:#ecf0f1;
+  color:#95a5a6;
+}
+#search-main table tbody tr:nth-child(even){
+  background:#bdc3c7;
+  color:#7f8c8d;
+}*/
+/*#search-main table tbody tr a{
+  text-decoration:none;
+  color:#e67e22;
+}*/
+.result:hover{
+  background-color: #ffff99;
+}
+#search-main .user-photo{
+  background:#bdc3c7;
+}
+#search-main .user-tumb{
+  width:6em;
+  height:6em;
+  padding:0;
+  display:table-cell;
+  text-align:center;
+  margin:0 auto;
+  -webkit-border-radius:100%;
+  -moz-border-radius:100%;
+  border-radius:100%;
+  background-size:cover;
+}
+
+/* = Responsive table
+------------------------*/
+
+/* http://elvery.net/demo/responsive-tables/  */
+@media only screen and (max-width: 800px){
+  #search-main table{
+    width:100%;
+    border-collapse:collapse;
+    border-spacing:0;
+  }
+  #search-main th,
+  #search-main td{
+    margin:0;
+    vertical-align:top;
+  }
+  #search-main th{
+    text-align:left;
+  }
+  #search-main table{
+    display:block;
+    position:relative;
+    width:100%;
+  }
+  #search-main thead{
+    display:block;
+    float:left;
+  }
+  #search-main tbody{
+    display:block;
+    width:auto;
+    position:relative;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  #search-main thead tr{
+    display:block;
+  }
+  #search-main th{
+    display:block;
+    text-align:right;
+  }
+  #search-main tbody tr{
+    display:inline-block;
+    vertical-align:top;
+  }
+  #search-main td{
+    display:block;
+    min-height:1.25em;
+    text-align:left;
+  }
+  #search-main th{
+    border-bottom:0;
+    border-left:0;
+  }
+  #search-main td{
+    border-left:0;
+    border-right:0;
+    border-bottom:0;
+  }
+}
+
+#search-main table {
+border: 1px solid #4E95F4;
+}
+
+.szero {
+  font-size: 1em;
+}
+
+#search-main table th{
+  text-align:center;
+  background-color: #BCE7F1;
+}

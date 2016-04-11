@@ -25,6 +25,17 @@ body {
 	height:300px;
 }
 
+#logoRide{
+	display: block;
+	position: absolute;
+	float: left;
+	margin-top: 5px;
+	padding-top: 0px;
+	margin-left: 10px;
+	color: #F2635F;
+	font-size: 35px;
+}
+
 /* home view styles */
 
 
@@ -48,12 +59,12 @@ body {
 #home-main h3 {
     text-align: center;
 	position: absolute;
-	top: 30%;
+	top: 15%;
 	left: 50%;
 	transform: translate(-50%, 0%);
 	color: white;
-	font-size: 35pt;
-
+	font-size: 45px;
+ 	text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
 }
 
 #howItWorks{
@@ -152,8 +163,10 @@ body {
 #map {
 	border: 1px solid black;
 	height: 300px;
-	width: 75%;
-	margin: 0 auto;
+	width: 50%;
+	margin: 15px 45px;
+	display: inline-block;
+	float: right;
 }
 /*#floating-panel {
 	position: absolute;

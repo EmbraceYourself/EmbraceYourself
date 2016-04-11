@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title id="Ridehook">Ridehook</title>
+    <title id="Ridehook">Ride On</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="styles/viewStyles.css" />
     <link rel="stylesheet" type="text/css" href="styles/searchTables.css" />
@@ -11,14 +11,15 @@
 </head>
 
 <body>
+    <h3 id="logoRide">Ride On</h3>
     <div id="signup" class="popupContainer" ng-controller="AppCtrl" ng-cloak="">
         <div layout="row" layout-wrap="" layout-margin="" layout-align="end">
-            <md-button class="md-flat" style="#E49E7A" href="/#/home">Home</md-button>
-            <md-button class="md-flat" href="/#/trips">Want to Drive?</md-button>
-            <md-button ng-show="loggedIn" class=" md-flat"  href="/#/profile">Hello, <span style="color: blue">{{ loggedIn }}</span>!</md-button>
-            <md-button ng-hide="loggedIn" class="md-flat" ng-click="showSignUp($event)">Sign Up</md-button>
+            <md-button class="md-raised" style="#E49E7A" href="/#/home">Home</md-button>
+            <md-button class="md-raised" href="/#/trips">Want to Drive?</md-button>
+            <md-button ng-show="loggedIn" class=" md-raised"  href="/#/profile">Hello, <span style="color: blue">{{ loggedIn }}</span>!</md-button>
+            <md-button ng-hide="loggedIn" class="md-raised" ng-click="showSignUp($event)">Sign Up</md-button>
             <!-- <md-button class="md-primary md-flat" ng-click="showSignIn($event)" ng-hide='showSignInButton.loggedIn'>Sign In</md-button> -->
-            <md-button class="md-flat " ng-click="showSignIn($event)" ng-hide='loggedIn'>Sign In</md-button>
+            <md-button class="md-raised" ng-click="showSignIn($event)" ng-hide='loggedIn'>Sign In</md-button>
             <md-button ng-show="loggedIn" class=" md-raised" style="align: left;" ng-click="logOut()"> Log Out </md-button>
 
         </div>

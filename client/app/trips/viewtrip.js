@@ -1,6 +1,7 @@
 angular.module('ridehook.tripview', [])
 
-.controller('ViewTripController', function($scope, $window, $route, ViewTrip, tripIDFactory, Riders, authenticate) {
+.controller('ViewTripController', function($scope, $window, $route, ViewTrip, 
+  tripIDFactory, Riders, authenticate, Messages) {
 
 
    $scope.trip = {};
@@ -187,6 +188,67 @@ angular.module('ridehook.tripview', [])
   }
 
 
+  $scope.addMessage = function() {
+
+
+    var message = {
+      message_text: $scope.new_message.message_text,
+      creator_id: userID,
+      creator_display_name: $window.sessionStorage.function,
+      responds_to: null,
+      message_trip_id: tripID,
+      responses: [],
+      created_on: Date.now()
+    }
+
+
+    Messages.addMessage(message).then(function() {
+      Messages.getMessages(tripID).then(function(resp) {
+
+        console.log('resp.data is : ')
+
+        console.log(resp.data)
+
+        $scope.messages = resp.data;
+
+      })
+    })
+  }
+
+  $scope.addResponse = function(message_id, message_resp) {
+
+    var newResponse;
+
+    Messages.getMessage(message_id).then(function(resp) {
+      if(resp.data[0].responses === "{}") {
+
+        console.log('HELLS ZYES')
+
+        newResponse = JSON.stringify([message_resp]);
+        console.log(newResponse)
+
+
+      } else {
+
+        console.log('HELLS NO')
+
+
+        //console.log(typeof JSON.parse(resp.data[0].responses))
+
+        newResponse = resp.data[0].responses.push(message_resp)
+
+        //newResponse = resp.data[0].responses.push(message_resp)
+
+        console.log("The PUSHED RESULTS ARE....")
+        console.log(newResponse)
+      }
+
+    }).then(function() {
+
+      Messages.insertResponse(newResponse, message_id);
+    })
+
+  }
 
 
 
@@ -271,13 +333,7 @@ angular.module('ridehook.tripview', [])
     })
   }
 
-  var getMessages = function(tripID) {
-    return $http({
-      method: 'GET',
-      url: '/api/trips/trip_messages',
-      data: tripID
-    })
-  }
+
 
   var calcSeatsLeft = function(riders, seats) {
 
@@ -297,7 +353,6 @@ angular.module('ridehook.tripview', [])
    getTrip: getTrip,
    getUser: getUser,
    getReviews: getReviews,
-   getMessages: getMessages,
    calcSeatsLeft: calcSeatsLeft,
    getSeatsLeft: getSeatsLeft,
    runReload: runReload
@@ -336,6 +391,7 @@ angular.module('ridehook.tripview', [])
     data.userID = userID;
     data.tripID = tripID;
 
+
     return $http({
       method: 'POST',
       url: '/api/rider/delete_rider',
@@ -356,4 +412,89 @@ angular.module('ridehook.tripview', [])
     deleteRider: deleteRider
   }
 
+})
+
+
+
+.factory('Messages', function($http) {
+
+
+      // message_text VARCHAR(500), \
+      // creator_id INT, \
+      // creator_display_name VARCHAR(255), \
+      // responds_to INT, \
+      // message_trip_id INT, \
+      // responses VARCHAR, \
+      // modified_on VARCHAR(255)
+
+
+  var addMessage = function(message) {
+
+        console.log('message: ')
+    console.log(message)
+
+    return $http({
+      method: 'POST',
+      url: '/api/messages/add_message',
+      data: message
+    })
+  }
+
+  var getMessages = function(tripID) {
+
+    var data = {};
+    data.message_trip_id = tripID;
+
+    console.log(data.message_trip_id)
+
+
+    return $http({
+      method: 'POST',
+      url: '/api/messages/get_trip_messages',
+      data: data
+    })
+  }
+
+  var getMessage = function(message_id) {
+
+    var data = {};
+    data.message_id = message_id;
+
+    return $http({
+      method: 'POST',
+      url: 'api/messages/get_message',
+      data: data
+    })
+  }
+
+  var insertResponse = function(responses, message_id) {
+    var data = {};
+    data.responses = responses;
+    data.message_id = message_id;
+
+    console.log('datat response')
+    console.log(data)
+
+    return $http({
+      method: 'POST',
+      url: 'api/messages/insert_response',
+      data: data
+    })
+
+
+  }
+
+
+  return {
+    addMessage: addMessage,
+    getMessages: getMessages,
+    getMessage: getMessage,
+    insertResponse: insertResponse
+  }
+
 });
+
+
+
+
+

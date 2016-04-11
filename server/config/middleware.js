@@ -9,6 +9,7 @@ module.exports = function (app, express) {
   var reviewRouter = express.Router();
   var userRouter = express.Router();
   var riderRouter = express.Router();
+  var messageRouter = express.Router();
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
@@ -20,6 +21,8 @@ module.exports = function (app, express) {
   app.use('/api/reviews', reviewRouter); 
   app.use('/api/user', userRouter);
   app.use('/api/rider', riderRouter);
+  app.use('/api/messages', messageRouter);
+
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
@@ -29,5 +32,6 @@ module.exports = function (app, express) {
   require('../models/reviews/reviewRoutes.js')(reviewRouter);
   require('../models/users/userRoutes.js')(userRouter);
   require('../models/riders/riderRoutes.js')(riderRouter);
+  require('../models/messages/messageRoutes.js')(messageRouter);
 
 };

@@ -18,28 +18,36 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
-  
+  Ride On
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Ride On connects drivers who have empty seats with people who need a ride.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Ride On is a ridesharing application that connects people who need to travel. Whether it's a cross-country trip or a local commute, Ride On let's you share the ride with friendly people who are traveling a similar route.
 
 ## Problem ##
   > Describe the problem your product solves.
+  Uber is expensive, access to public transportation is spotty, and not everyone has a working car. Ride On makes it possible for people to share rides and associated costs for all the places they need to get to. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Ride On let's anyone seach for rides or post a ride right from the home page. Search results display a list of matching trips which include a photo of the driver, a descritpion of the trip, the depart date, arrival date and time, and the number of open seats in the car.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "Getting a ride with Ride On is quick and painless! It's 3 easy steps to claim a seat and the convenient message system let's riders keep in touch with the driver hosting the ride!"
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Getting started is easy: try searching for a ride from the home page! Signup & signin links are conveniently located in upper right corner of every page.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "Ride On is awesome! It's taken all the stress away from my daily commute.  I've shared rides with many interesting people and even made new friends.  Thanks, Ride On!"
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Let Ride On take you where you need to go today and change the way you travel.

@@ -14,7 +14,7 @@ var userController = require('./server/models/users/userController.js');
 // database trips
 var tripTableSure = require('./server/models/trips/tripModel.js').tripTableSure;
 var tripController = require('./server/models/trips/tripController.js');
-
+var reviewController = require('./server/models/reviews/reviewController.js');
 
 
 
@@ -48,6 +48,16 @@ app.post('/data/users/signup', function (req, res) {
   }
 });
 
+
+app.post('/data/reviews/status', function(req, res){
+  console.log('Post for Review Status Recieved');
+  if (req.body){
+    var client = new pg.Client(connectionString);
+    reviewController.checkReviewStatusOnLogin(req.body, req, res, client);
+  }
+});
+
+
 app.post('/data/users/login', function (req, res) {
 
   console.log("Post received!");
@@ -80,7 +90,8 @@ app.post('/data/users/login', function (req, res) {
               user_id: result.rows[0].id,
               username: result.rows[0].username,
               first_name: result.rows[0].first_name,
-              last_name: result.rows[0].last_name
+              last_name: result.rows[0].last_name,
+              profile_pic: result.rows[0].profile_pic
             };
 
             // We are sending the profile inside the token
@@ -91,7 +102,8 @@ app.post('/data/users/login', function (req, res) {
               user_id: profile.user_id,
               username: profile.username,
               first_name: profile.first_name,
-              last_name: profile.last_name
+              last_name: profile.last_name,
+              profile_pic: profile.profile_pic
             });
 
             client.end();
@@ -101,6 +113,8 @@ app.post('/data/users/login', function (req, res) {
 
       });
     }
+
+
     loginUser(req.body, req, res, client);
   }
 });
@@ -112,6 +126,8 @@ app.post('/data/users/login', function (req, res) {
 //     userController.loginUser(req.body, req, res, client);
 //   }
 // });
+
+
 
 app.post('/data/users/profile', function (req, res) {
   console.log("Post received!");

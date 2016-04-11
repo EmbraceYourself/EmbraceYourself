@@ -1,5 +1,5 @@
 var pg = require('pg');
-var connectionString = 'postgres://localhost:5432/test';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
 
 module.exports = {
 
@@ -11,7 +11,7 @@ module.exports = {
 
   errorHandler: function (error, req, res, next) {
 
-    res.status(500).send({error: error.message}); 
+    res.status(500).send({error: error.message});
   },
 
   createClient: function() {

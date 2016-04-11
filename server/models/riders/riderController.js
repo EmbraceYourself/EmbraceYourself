@@ -13,6 +13,7 @@ module.exports = {
 
     var client = helper.createClient();
 
+    console.log('req.body: ', req.body);
 
     var rider = [
 
@@ -22,7 +23,7 @@ module.exports = {
       req.body.trip_end_time,
       req.body.review_id,
       req.body.modified_on,
-      req.body.created_on,
+      req.body.created_on
 
     ];
     console.log('here in addRider')
@@ -35,7 +36,7 @@ module.exports = {
         return res.status(500).json({ success: false, data: err});
       }
 
-      client.query("SELECT * FROM riders WHERE user_id = $1", [req.body.user_id], function(err, result) {
+      client.query("SELECT * FROM riders WHERE user_id = $1 AND trip_id = $2", [req.body.user_id, req.body.trip_id], function(err, result) {
         if(err) throw err;
         if (result.rows.length > 0 || !req.body.user_id) {
           client.end();

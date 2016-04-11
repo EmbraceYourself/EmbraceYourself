@@ -102,7 +102,7 @@ function findTrip(data, req, res, client) {
   var dataInputs = [
     data.pickup_point,
     data.dropoff_point,
-    data.depart_date, // "04/08/2016" string
+    data.depart_date // "04/08/2016" string
   ];
 
   client.connect(function(err) {

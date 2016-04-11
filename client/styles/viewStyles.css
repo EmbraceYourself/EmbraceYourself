@@ -56,12 +56,45 @@
   clear: both;
   height: 500px;
   padding-top: 15px;
+  margin-top: 15px;
   margin-left: 5px;
   width: 20%;
   background-color: #B2C2D0;
   border:2px solid black;
 
   border-radius: 6px;
+
+}
+
+
+.message-box {
+
+  position: relative;
+  display: inline-block;
+  float: left;
+  clear: both;
+  height: auto;
+  padding-top: 15px;
+  margin-left: 1px;
+  width: 50%;
+  background-color: #ffffff;
+  border:2px solid black;
+
+  border-radius: 6px;
+
+}
+
+.reply-area {
+  float: left;
+  width: 80%;
+
+
+}
+
+.list-group {
+  float: middle;
+  background-color: #76B4ED;
+
 
 }
 
@@ -82,14 +115,21 @@
 }
 
 .label {
+ display: inline-block;
+ width: 15%;
+ text-align: left;
  float: left;
  padding-left: 20px;
+ padding-right: 5px;
  text-decoration: bold;
 }
 
 .detail {
+display: inline-block;
+ width: 40%;
  float: none;
- padding-right: 20px;
+ text-align: left;
+ padding-right: 5px;
 
 }
 
@@ -334,4 +374,36 @@ fieldset[disabled] .btn-cancel-ride.focus {
  display: none;
 }
 
+.rating {
+  overflow: hidden;
+  vertical-align: bottom;
+  display: inline-block;
+  width: auto;
+  height: 30px;
+}
 
+.rating > input {
+  opacity: 0;
+  margin-right: -100%;
+}
+
+.rating > label {
+  position: relative;
+  display: block;
+  float: right;
+  background: url('star-off-big.png');
+  background-size: 30px 30px;
+}
+
+.rating > label:before {
+  display: block;
+  opacity: 0;
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: url('star-on-big.png');
+  background-size: 30px 30px;
+  transition: opacity 0.2s linear;
+}
+
+.rating > label:hover:before,  .rating > label:hover ~ label:before,  .rating:not(:hover) > :checked ~ label:before { opacity: 1; }

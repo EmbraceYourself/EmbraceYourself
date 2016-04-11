@@ -54,7 +54,7 @@
     </div>
   </div>
 
-  <div id="container" class="top-right-sidebar">
+  <div id="container" class="top-right-sidebar" >
 
     <p class="price-and-seats"> ${{trip.seat_price}} | {{trip.seats}} Seats left</p>
 
@@ -73,6 +73,11 @@
 
 
   </div>
+
+  
+
+
+
 
   <div id="container" class="driver-side-bar">
 
@@ -101,6 +106,43 @@
   </div>
 
 
+<!--
+  <div id="container" class="messages-box">
+
+
+       <p>{{messages.here}}</p>
+     <div ng-repeat="message in messages | orderBy: 'id': true" ng-include="'app/messages/response.html'" ng-init="level = level + 1">
+
+
+     </div>
+
+
+    <form class="add-message" name="addMessageform" role="form" ng-submit='addMessage()'>
+
+
+      <p></p>
+      <p></p>
+
+
+      <div class="form-group form-group-lg">
+        <label class="col-sm-2 control-label" for="lg">Message: </label>
+        <div>
+          <textarea type='text' ng-model='new_message.message_text' placeholder="Ask a question." required></textarea>
+
+        </div>
+      </div>
+
+      <div>
+        <p></p>
+          <input type="submit" value="Submit Message">
+        <p></p>
+      </div>
+
+
+
+    </form>
+</div>
+!-->
 
 
 

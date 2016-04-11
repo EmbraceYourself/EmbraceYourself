@@ -1,0 +1,23 @@
+<div id='container'>
+  <div class="message-box"> Messages!
+
+         <p>Question: {{message.message_text}}</p>
+       <p>creator_id: {{message.userID}}</p>
+       <p>creator_display_name: {{message.first_name}}</p>
+       <p>responds_to: {{message.responds_to}}</p>
+       <p>message_trip_id: {{message.message_trip_id}}</p>
+       <p>responses: []</p>
+       <p>created_on: {{$scope.message.created_on}}</p>
+       <form >
+       <textarea class="reply-area" type='text' ng-model='message.resp' placeholder="Leave a Reply." required></textarea>
+          <input type="submit" value="Reply" ng-click="addResponse(message.id, message.resp)" >
+       </form>
+
+
+
+    <div ng-repeat="response in responses = comment.responses | orderBy: 'created_at': true" ng-init="level = level + 1"></div>
+  </div>
+</div>
+
+
+       

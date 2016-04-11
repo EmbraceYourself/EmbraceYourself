@@ -129,13 +129,17 @@ angular.module('ridehook', [
 .controller('AppCtrl', function ($scope, $mdDialog, $window, $location) {
 
   $scope.loggedIn = $window.sessionStorage.un;
+  $scope.needs_review_username = $window.sessionStorage.needs_review_username;
+  $scope.needs_user_review_trip_id = $window.sessionStorage.needs_user_review_trip_id;
 
   $scope.logOut = function () {
-    delete $window.sessionStorage.token;
-    delete $window.sessionStorage.id;
-    delete $window.sessionStorage.un;
-    delete $window.sessionStorage.fn;
-    delete $window.sessionStorage.ln;
+    // delete $window.sessionStorage.token;
+    // delete $window.sessionStorage.id;
+    // delete $window.sessionStorage.un;
+    // delete $window.sessionStorage.fn;
+    // delete $window.sessionStorage.ln;
+    // delete $window.sessionStorage.pp;
+    $window.sessionStorage.clear();
     $window.location.reload();
   };
 
@@ -222,21 +226,55 @@ angular.module('ridehook', [
             $window.sessionStorage.un = response.data.username;
             $window.sessionStorage.fn = response.data.first_name;
             $window.sessionStorage.ln = response.data.last_name;
+            $window.sessionStorage.pp = response.data.profile_pic;
 
             console.log('Success: ', response);
             $mdDialog.hide(information);
             $window.location.reload();
 
         }, function(error) {
-            delete $window.sessionStorage.token;
-            delete $window.sessionStorage.id;
-            delete $window.sessionStorage.un;
-            delete $window.sessionStorage.fn;
-            delete $window.sessionStorage.ln;
+            // delete $window.sessionStorage.token;
+            // delete $window.sessionStorage.id;
+            // delete $window.sessionStorage.un;
+            // delete $window.sessionStorage.fn;
+            // delete $window.sessionStorage.ln;
+            // delete $window.sessionStorage.pp;
+            $window.sessionStorage.clear();
             console.log('Error: ', error);
         });
 
       };
+
+      $scope.checkReviewStatus = function(information) {
+
+        information = {
+            username: information.username,
+            password: information.password
+        };
+
+        console.log("cat: ", information);
+        return $http({
+            method: 'POST',
+            url: 'data/reviews/status',
+            data: information
+        }).then(function(response){
+            console.log("review response:", response.data);
+            $window.sessionStorage.needs_review_username = response.data.needs_review_username;
+            $window.sessionStorage.needs_user_review_trip_id = response.data.needs_user_review_trip_id;
+
+            $window.sessionStorage.needs_user_review_driver_id = response.data.needs_user_review_driver_id;
+            $window.sessionStorage.needs_review_user_id = response.data.needs_review_user_id;
+
+            if (response.data !== "User reviews are up-to-date."){
+                $location.url('/addreview');
+                $window.location.reload();
+            }
+
+        })
+
+
+      }
+
   }
 
 });

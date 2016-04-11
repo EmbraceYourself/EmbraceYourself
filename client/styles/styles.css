@@ -1,5 +1,6 @@
 body {
 	width: 100%;
+
 }
 
 #div-main {
@@ -24,38 +25,62 @@ body {
 	height:300px;
 }
 
+#logoRide{
+	display: block;
+	position: absolute;
+	float: left;
+	margin-top: 5px;
+	padding-top: 0px;
+	margin-left: 10px;
+	color: #F2635F;
+	font-size: 35px;
+}
+
 /* home view styles */
+
+/*test*/
 
 #home-main {
     width: 100%;
     margin: auto;
+
 }
+
+#signup{
+	color: #F2635F;
+}
+
+#signin{
+	color: #F2635F;
+}
+
+
 
 #home-main h3 {
     text-align: center;
 	position: absolute;
-	top: 35.5%;
+	top: 15%;
 	left: 50%;
 	transform: translate(-50%, 0%);
+	color: white;
+	font-size: 45px;
+ 	text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
 
 }
 
 #howItWorks{
 	position: absolute;
-	top: 55.0%;
+	top: 35.0%;
 	left: 50%;
 	transform: translate(-50%, 0%);
-
 }
 
 #div-searchboxes{
 	position: absolute;
-	top: 75.5%;
+	top: 55.5%;
 	left: 50%;
 	transform: translate(-50%, 0%);
-
 }
-
 
 /*Profile Page Styles */
 #verifiedcolumnleft{
@@ -90,13 +115,26 @@ body {
 	overflow: auto;
 }
 
-
 /* create a trip view styles */
 
+#create-trip-title {
+	font-family: 'Noto Serif', serif;
+	font-size: 2em;
+}
+
+#div-trip {
+	background-color: #9fbddf;
+	border: 1px solid black;
+}
+
 #tripForm {
+	font-family: 'Noto Serif', serif;
+	font-size: 1.2em;
 	width: 600px;
 	margin: 0 auto;
-	border: 1px solid black;
+	//border: 1px solid black;
+	border-radius: 10px;
+	padding-bottom: 10px;
 }
 
 #textarea-description {
@@ -104,8 +142,37 @@ body {
 	height: 50px;
 }
 
+#div-location {
+	padding-bottom: 30px;
+}
+
 #input-pickup-location {
 	width: 200px;
+	text-align: center;
+}
+
+#div-datetime {
+	margin-left: 40px;
+	float: left;
+}
+
+#div-seats {
+	display: block;
+}
+
+#input-numSeats {
+	width: 30px;
+	height: 25px;
+	//display: block;
+	text-align: center;
+}
+
+#btn-submit-trip {
+	//display: block;
+	color: #ffffff;
+	border-radius: 5px;
+	background-color: #dd4b39;
+	margin-top: 10px;
 }
 
 #err_msg {

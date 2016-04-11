@@ -51,7 +51,8 @@ angular.module('ridehook.reviews', [])
 
   }; 
 
-
+//function to check to see if needs_review_user_id exists.
+//if it exists, redirect to addreview.html
 
 
 })

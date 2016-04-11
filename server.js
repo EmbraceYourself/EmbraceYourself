@@ -48,6 +48,16 @@ app.post('/data/users/signup', function (req, res) {
   }
 });
 
+
+app.post('/data/reviews/status', function(req, res){
+  console.log('Post for Review Status Recieved');
+  if (req.body){
+    var client = new pg.Client(connectionString);
+    userController.newUser(req.body, req, res, client);
+  }
+});
+
+
 app.post('/data/users/login', function (req, res) {
 
   console.log("Post received!");
@@ -103,6 +113,8 @@ app.post('/data/users/login', function (req, res) {
 
       });
     }
+
+
     loginUser(req.body, req, res, client);
   }
 });
@@ -114,6 +126,8 @@ app.post('/data/users/login', function (req, res) {
 //     userController.loginUser(req.body, req, res, client);
 //   }
 // });
+
+
 
 app.post('/data/users/profile', function (req, res) {
   console.log("Post received!");

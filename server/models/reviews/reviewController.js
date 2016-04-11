@@ -87,5 +87,46 @@ module.exports = {
 
     });
 
+  },
+
+  checkReviewStatusOnLogin: function(reqbody, req, res, next) {
+
+    var client = helper.createClient();
+
+    client.connect(function(err){
+      if (err){
+        console.error('Did not query');
+        return res.status(500).json({success: false, data: err});
+      }
+
+      var query =  client.query("SELECT users.id, users.username, riders.trip_id FROM users LEFT JOIN riders on users.id = riders.user_id LEFT JOIN reviews on users.id = reviews.reviewing_userid WHERE riders.trip_end_date is not null AND reviews.review is null;", function(err, result){
+         console.log(result);
+          if(err) {
+            throw err;
+            console.log("query error");
+           } if (result.rows.length < 1){
+            client.end();
+
+            return res.status(202).send('User reviews are up-to-date.');
+          } else {
+            
+            
+
+            reviewStatus = {
+              needs_review_user_id: result.rows[0].id,
+              needs_review_username: result.rows[0].username,
+              needs_user_review_trip_id: result.rows[0].trip_id
+            };
+            console.log("Review status result:", result);
+
+            
+            res.status(200).send(reviewStatus);
+
+            client.end();
+          }
+      })
+    })
   }
+  
+  
 }

@@ -14,7 +14,7 @@ var userController = require('./server/models/users/userController.js');
 // database trips
 var tripTableSure = require('./server/models/trips/tripModel.js').tripTableSure;
 var tripController = require('./server/models/trips/tripController.js');
-
+var reviewController = require('./server/models/reviews/reviewController.js');
 
 
 
@@ -47,6 +47,16 @@ app.post('/data/users/signup', function (req, res) {
     userController.newUser(req.body, req, res, client);
   }
 });
+
+
+app.post('/data/reviews/status', function(req, res){
+  console.log('Post for Review Status Recieved');
+  if (req.body){
+    var client = new pg.Client(connectionString);
+    reviewController.checkReviewStatusOnLogin(req.body, req, res, client);
+  }
+});
+
 
 app.post('/data/users/login', function (req, res) {
 
@@ -103,6 +113,8 @@ app.post('/data/users/login', function (req, res) {
 
       });
     }
+
+
     loginUser(req.body, req, res, client);
   }
 });
@@ -114,6 +126,8 @@ app.post('/data/users/login', function (req, res) {
 //     userController.loginUser(req.body, req, res, client);
 //   }
 // });
+
+
 
 app.post('/data/users/profile', function (req, res) {
   console.log("Post received!");

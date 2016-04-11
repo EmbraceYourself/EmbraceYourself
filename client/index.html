@@ -83,7 +83,7 @@
                     </md-tabs>
                     <md-dialog-actions layout="row">
                         <md-button ng-click="hide()">Cancel</md-button>
-                        <md-button ng-click="loginUser({'username': username, 'password': password})" style="margin-right:20px;">Sign In</md-button>
+                        <md-button ng-click="loginUser({'username': username, 'password': password}); checkReviewStatus({'username': username, 'password': password})" style="margin-right:20px;">Sign In</md-button>
                     </md-dialog-actions>
                 </form>
             </md-dialog>

@@ -2,11 +2,12 @@
 angular.module('ridehook.profile', [])
 
 
-	$scope.loggedIn = $window.sessionStorage.id;
-	$scope.profile_pic = $window.sessionStorage.pp;
+
 
 .controller('ProfileController', function ($scope, $window, $location, $http, tripIDFactory) {
 
+	$scope.loggedIn = $window.sessionStorage.id;
+	$scope.profile_pic = $window.sessionStorage.pp;
 
 	if ($window.sessionStorage.id){
 	$scope.firstname = $window.sessionStorage.fn;

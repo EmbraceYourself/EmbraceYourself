@@ -250,15 +250,21 @@ angular.module('ridehook', [
             password: information.password,
         };
 
+        console.log("cat")
         return $http({
             method: 'POST',
             url: 'data/reviews/status',
             data: information
         }).then(function(response){
-
+            console.log("review response:", response.data);
             $window.sessionStorage.needs_review_username = response.data.needs_review_username;
             $window.sessionStorage.needs_user_review_trip_id = response.data.needs_user_review_trip_id;
             $window.sessionStorage.needs_review_user_id = response.data.needs_review_user_id;
+
+            if ($window.sessionStorage.needs_user_review_trip_id != null){
+                $location.url('/addreview')
+            }
+            
         })
 
 

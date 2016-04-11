@@ -14,7 +14,7 @@ var userController = require('./server/models/users/userController.js');
 // database trips
 var tripTableSure = require('./server/models/trips/tripModel.js').tripTableSure;
 var tripController = require('./server/models/trips/tripController.js');
-
+var reviewController = require('./server/models/reviews/reviewController.js');
 
 
 
@@ -53,7 +53,7 @@ app.post('/data/reviews/status', function(req, res){
   console.log('Post for Review Status Recieved');
   if (req.body){
     var client = new pg.Client(connectionString);
-    userController.newUser(req.body, req, res, client);
+    reviewController.checkReviewStatusOnLogin(req.body, req, res, client);
   }
 });
 
